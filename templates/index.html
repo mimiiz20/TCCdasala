@@ -3,28 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&display=swap" rel="stylesheet">
     <title>SENAI</title>
-    <link rel="stylesheet" href ="/static/style.css">
-    
+    <link rel="stylesheet" href ="static/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+    <script src="/static/script.js"> </script>
 </head>
 <body>
-    <h1>SENAI</h1>
-    <div id="login">
-        <img src="/static/fiep.png" alt="fiep logo" width="400" height="200">
-        <div class="email">
-            <label>Email: </label>
-            <input type="email" placeholder="Digite seu email..." required>
-        </div>
-        <div class="senha">
-            <label>Senha: </label>
-            <input type="password" placeholder="Digite sua senha..." required>
-        </div>
-        <button id="Entrar">Entrar</button>
-    </div>
+    <div id="login-page">
+        <img src="static/fiep.png" alt="fiep logo" width="200" height="97">
+        <div id="login-form">
+                <div class="mb-3">
+                    <label>Usuário</label>
+                    <input type="text" class="form-control" id="specificSizeInputName" placeholder="Digite seu email">
+                </div>
 
+                <div class="mb-3">
+                    <label>Senha</label>
+                    <input type="password" class="form-control" id="specificSizeInputName" placeholder="Digite sua senha">
+                </div>
+            </div>
+            <div class="d-grid mt-4">
+                <button id="Entrar" class="btn btn-outline-primary" type="button">
+                Entrar
+                </button>
+            </div>
+        </div>
+    </div>
     <script src="/static/static.js"></script>
 </body>
 </html>
