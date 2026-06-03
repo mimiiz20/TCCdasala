@@ -41,6 +41,7 @@
             <th>NOME</th>
             <th>QUANTIDADE</th>
             <th>IMAGEM</th>
+            <th>EXCLUIR</th>
         </tr>
 
         {% for item in resultado %}
@@ -56,6 +57,13 @@
                         data-bs-toggle="modal"
                         data-bs-target="#modal{{item[0]}}">
                     <span class="material-symbols-outlined">photo_camera</span>
+                </button>
+            </td>
+
+            <td>
+                <button class="btn btn-danger btn-sm"
+                    onclick="excluirItem('{{ item[0] }}')">
+                    Excluir
                 </button>
             </td>
         </tr>

@@ -224,6 +224,18 @@ input:focus {
     font-weight: bold;
 }
 
+.botoes-movimento {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.btn-movimento {
+  width: 200px;
+  height: 45px;
+}
+
 .btn:hover,
 .btn-outline-primary:hover {
     background-color: #142552 !important;
@@ -242,6 +254,22 @@ input:focus {
     box-shadow: 0 0 0 3px rgba(29, 50, 115, 0.3) !important;
 }
 
+.btn {
+  transition: all 0.15s ease;
+}
+
+.btn:active {
+  transform: translateY(1px);
+}
+
+#btnRegistrar {
+  width: 50%;
+  margin-top: 16px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .drag-area {
   border: 2px dashed #1D3273;
   border-radius: 12px;
@@ -251,6 +279,10 @@ input:focus {
   text-align: center;
   cursor: pointer;
   transition: 0.3s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
 }
 
 .drag-area.active {
@@ -265,3 +297,8 @@ input:focus {
   flex-wrap: wrap;
 }
 
+.btn-selecionado {
+  background-color: #51608C !important;
+  border-color: #F28705 !important;
+  transform: translateY(3px);
+}

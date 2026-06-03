@@ -8,7 +8,7 @@ if (botao) {
     });
 }
 
-// ADICIONAR ITENS
+// ADICIONAR E RETIRAR ITENS
 window.addEventListener("DOMContentLoaded", () => {
 
     console.log("JS carregou com sucesso");
@@ -20,20 +20,58 @@ window.addEventListener("DOMContentLoaded", () => {
 
     let tipoMovimentacao = "";
 
+    // FUNÇÃO: limpar seleção
+    function limparSelecao() {
+        if (btnEntrada) btnEntrada.classList.remove("btn-selecionado");
+        if (btnSaida) btnSaida.classList.remove("btn-selecionado");
+    }
+
+    // BOTÃO ENTRADA
     if (btnEntrada) {
         btnEntrada.addEventListener("click", () => {
             tipoMovimentacao = "entrada";
+
+            limparSelecao();
+            btnEntrada.classList.add("btn-selecionado");
+
             console.log("Entrada selecionada");
         });
     }
 
+    // BOTÃO SAÍDA
     if (btnSaida) {
         btnSaida.addEventListener("click", () => {
             tipoMovimentacao = "saida";
+
+            limparSelecao();
+            btnSaida.classList.add("btn-selecionado");
+
             console.log("Saída selecionada");
         });
     }
 
+
+// EXCLUIR LINHA
+window.excluirItem = async function(id) {
+
+    const confirmacao = confirm("Tem certeza que deseja excluir este item?");
+    if (!confirmacao) return;
+
+    const resposta = await fetch(`/excluir/${id}`, {
+        method: "DELETE"
+    });
+
+    const data = await resposta.json();
+
+    if (data.success) {
+        alert("Item excluído com sucesso!");
+        location.reload();
+    } else {
+        alert("Erro ao excluir");
+    }
+}
+
+// ATUALIZAR A TABELA
     if (btnRegistrar) {
         btnRegistrar.addEventListener("click", async () => {
 

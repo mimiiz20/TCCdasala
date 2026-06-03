@@ -1,5 +1,7 @@
 from flask import Flask, render_template, request, jsonify
 import mysql.connector
+import os
+from werkzeug.utils import secure_filename
 
 app = Flask(__name__)
 
@@ -8,7 +10,7 @@ app = Flask(__name__)
 def home():
     return render_template('index.html')
 
-# ATUALIZAR TABELA
+# ENTRADA E SAÍDA
 @app.route('/tabela')
 def tabela():
     conexao = mysql.connector.connect(
@@ -36,6 +38,7 @@ def entrada():
     qtde = int(request.form.get('qtde'))
     responsavel = request.form.get('responsavel')
     tipo = request.form.get('tipo')
+    imagem = request.files.get("imagem")
 
     conexao = mysql.connector.connect(
         host='localhost',
@@ -47,15 +50,37 @@ def entrada():
 
     cursor = conexao.cursor()
 
+    # =========================
+    # 1. SALVAR IMAGEM PRIMEIRO
+    # =========================
+    if imagem:
+        nome_arquivo = secure_filename(imagem.filename)
+
+        pasta = "static/uploads"
+        os.makedirs(pasta, exist_ok=True)
+
+        caminho_salvar = os.path.join(pasta, nome_arquivo)
+        imagem.save(caminho_salvar)
+
+        caminho_imagem = "/" + caminho_salvar.replace("\\", "/")
+    else:
+        caminho_imagem = None
+
+    # =========================
+    # 2. ENTRADA
+    # =========================
     if tipo == "entrada":
 
         sql = """
-        INSERT INTO estoque (responsavel, nome, qtde)
-        VALUES (%s, %s, %s)
+        INSERT INTO estoque (responsavel, nome, qtde, imagem)
+        VALUES (%s, %s, %s, %s)
         """
 
-        cursor.execute(sql, (responsavel, nome, qtde))
+        cursor.execute(sql, (responsavel, nome, qtde, caminho_imagem))
 
+    # =========================
+    # 3. SAÍDA
+    # =========================
     elif tipo == "saida":
 
         sql = """
@@ -67,12 +92,12 @@ def entrada():
         cursor.execute(sql, (qtde, nome))
 
     conexao.commit()
-
     cursor.close()
     conexao.close()
 
     return jsonify({"success": True})
 
+# EXCLUIR LINHA
 @app.route('/excluir/<int:id>', methods=['DELETE'])
 def excluir(id):
 
