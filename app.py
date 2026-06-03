@@ -17,7 +17,7 @@ def tabela():
         host= 'localhost',
         port = 3306,    
         user = 'root',
-        password = '',
+        password = 'Mica@2009',
         database = 'almoxarifado'
     )
     cursor = conexao.cursor()
@@ -44,7 +44,7 @@ def entrada():
         host='localhost',
         port=3306,
         user='root',
-        password='',
+        password='Mica@2009',
         database='almoxarifado'
     )
 
@@ -76,7 +76,7 @@ def entrada():
         VALUES (%s, %s, %s, %s)
         """
 
-        cursor.execute(sql, (responsavel, nome, qtde, caminho_imagem))
+        cursor.execute(sql, (responsavel, nome, qtde,imagem))
 
     # =========================
     # 3. SAÍDA
@@ -105,7 +105,7 @@ def excluir(id):
         host='localhost',
         port=3306,
         user='root',
-        password='',
+        password='Mica@2009',
         database='almoxarifado'
     )
 
