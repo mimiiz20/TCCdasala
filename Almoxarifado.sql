@@ -23,12 +23,13 @@ VALUES ("Róger", "Chave Fenda", 12, "/static/chave_fenda.jpg");
 INSERT INTO estoque (responsavel, nome, qtde, imagem)
 VALUES ("Viviane", "Alicate", 8, "/static/alicate.jpg");
 
-INSERT INTO usuarios (nome, email, senha, tipo)
+INSERT INTO usuarios (user, email, senha, tipo)
 VALUES ('Administrador', 'admin@empresa.com', '123456', 'admin');
-INSERT INTO usuarios (nome, email, senha, tipo)
+INSERT INTO usuarios (user, email, senha, tipo)
 VALUES ('João', 'joao@empresa.com', '123456', 'usuário');	
 
 SELECT * FROM estoque;
+SELECT * FROM usuarios;
 
 TRUNCATE TABLE estoque;
-TRUNCATE TABLE usuarios;
+TRUNCATE TABLE usuarios;git

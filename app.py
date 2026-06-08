@@ -10,10 +10,11 @@ app.secret_key = "chave_secreta_123"
 
 def get_db():
     return mysql.connector.connect(
-        host='localhost',
+        host='127.0.0.1',
         user='root',
-        password='Mica@2009',
-        database='almoxarifado'
+        password='',
+        database='almoxarifado',
+        port=3306
     )
 
 # AUTORIZAÇÃO
@@ -236,7 +237,7 @@ def cadastro():
     cursor = conexao.cursor()
 
     cursor.execute("""
-        INSERT INTO usuarios (nome, email, senha, tipo)
+        INSERT INTO usuarios (user, email, senha, tipo)
         VALUES (%s, %s, %s, %s)
     """, (usuario, email, senha, perfil))
 
