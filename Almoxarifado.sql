@@ -12,7 +12,7 @@ CREATE TABLE estoque (
 
 CREATE TABLE usuarios (
     id INT PRIMARY KEY AUTO_INCREMENT,
-    nome VARCHAR(100) NOT NULL,
+    user VARCHAR(100) NOT NULL,
     email VARCHAR(100) NOT NULL UNIQUE,
     senha VARCHAR(255) NOT NULL,
     tipo VARCHAR(20) NOT NULL DEFAULT 'usuario'
@@ -26,7 +26,9 @@ VALUES ("Viviane", "Alicate", 8, "/static/alicate.jpg");
 INSERT INTO usuarios (nome, email, senha, tipo)
 VALUES ('Administrador', 'admin@empresa.com', '123456', 'admin');
 INSERT INTO usuarios (nome, email, senha, tipo)
-VALUES ('João', 'joao@empresa.com', '123456', 'usuario');
+VALUES ('João', 'joao@empresa.com', '123456', 'usuário');	
 
 SELECT * FROM estoque;
 
+TRUNCATE TABLE estoque;
+TRUNCATE TABLE usuarios;
