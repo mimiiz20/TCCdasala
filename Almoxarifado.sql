@@ -32,4 +32,4 @@ SELECT * FROM estoque;
 SELECT * FROM usuarios;
 
 TRUNCATE TABLE estoque;
-TRUNCATE TABLE usuarios;git
+TRUNCATE TABLE usuarios;
