@@ -93,6 +93,7 @@ def tabela():
 def entrada():
 
     nome = request.form.get('nome')
+    categoria = request.form.get('categoria')
     qtde = request.form.get('qtde')
     responsavel = request.form.get('responsavel')
     estoque_min = request.form.get('estoque_min')
@@ -134,13 +135,14 @@ def entrada():
                 UPDATE estoque
                 SET qtde = qtde + %s,
                 estoque_min = %s,
+                categoria = %s,
                 preco = %s
                 descricao = %s,
                 WHERE nome = %s
             """, (qtde, estoque_min, preco, descricao, nome))
         else:
             cursor.execute("""
-                INSERT INTO estoque (responsavel, nome, qtde, estoque_min, descricao, preco, imagem)
+                INSERT INTO estoque (responsavel, nome, categoria, qtde, estoque_min, descricao, preco, imagem)
                 VALUES (%s, %s, %s, %s, %s, %s, %s)
             """, (responsavel, nome, qtde, estoque_min, descricao, preco, caminho_imagem))
 
@@ -159,6 +161,7 @@ def entrada():
                 UPDATE estoque
                 SET qtde = qtde - %s
                 estoque_min = %s,
+                categoria = %s,
                 preco = %s
                 descricao = %s,
                 WHERE nome = %s
