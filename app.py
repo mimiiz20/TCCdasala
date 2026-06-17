@@ -88,20 +88,25 @@ def tabela():
     return render_template('tabela.html', resultado=resultado)
 
 # ENTRADA / SAÍDA ESTOQUE 
-
+# Tive que mudar essa parte pra por novas informações na tabela
 @app.route('/entrada', methods=['POST'])
 def entrada():
 
     nome = request.form.get('nome')
     qtde = request.form.get('qtde')
     responsavel = request.form.get('responsavel')
+    estoque_min = request.form.get('estoque_min')
+    preco = request.form.get('preco')
+    descricao = request.form.get('descricao')
     tipo = request.form.get('tipo')
     imagem = request.files.get("imagem")
 
-    if not nome or not qtde or not responsavel or not tipo:
+    if not nome or not qtde or not responsavel or not tipo or not estoque_min or not preco:
         return jsonify({"success": False, "erro": "Campos obrigatórios"}), 400
 
     qtde = int(qtde)
+    estoque_min = int(estoque_min)
+    preco = float(preco)
 
     caminho_imagem = None
 
@@ -127,22 +132,42 @@ def entrada():
         if item:
             cursor.execute("""
                 UPDATE estoque
-                SET qtde = qtde + %s
+                SET qtde = qtde + %s,
+                estoque_min = %s,
+                preco = %s
+                descricao = %s,
                 WHERE nome = %s
-            """, (qtde, nome))
+            """, (qtde, estoque_min, preco, descricao, nome))
         else:
             cursor.execute("""
-                INSERT INTO estoque (responsavel, nome, qtde, imagem)
-                VALUES (%s, %s, %s, %s)
-            """, (responsavel, nome, qtde, caminho_imagem))
+                INSERT INTO estoque (responsavel, nome, qtde, estoque_min, descricao, preco, imagem)
+                VALUES (%s, %s, %s, %s, %s, %s, %s)
+            """, (responsavel, nome, qtde, estoque_min, descricao, preco, caminho_imagem))
 
     elif tipo == "saida":
 
-        cursor.execute("""
-            UPDATE estoque
-            SET qtde = qtde - %s
-            WHERE nome = %s
-        """, (qtde, nome))
+# Evita valores negativos aparentemente
+        cursor.execute(
+        "SELECT qtde FROM estoque WHERE nome = %s",
+        (nome,)
+        )
+
+        produto = cursor.fetchone()
+
+        if produto and produto[0] >= qtde:
+            cursor.execute("""
+                UPDATE estoque
+                SET qtde = qtde - %s
+                estoque_min = %s,
+                preco = %s
+                descricao = %s,
+                WHERE nome = %s
+            """, (qtde, estoque_min, descricao, preco, nome))
+        else:
+            return jsonify({
+                "success": False,
+                "erro": "Quantidade insuficiente em estoque"
+            }), 400
 
     conexao.commit()
     cursor.close()

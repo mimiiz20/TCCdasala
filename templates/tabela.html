@@ -48,35 +48,57 @@
 
 
     <div class="table-container">
-    <table class="table table-bordered tabela-estoque">
-        <tr>
-            <th>ID</th>
-            <th>RESPONSÁVEL</th>
-            <th>NOME</th>
-            <th>QUANTIDADE</th>
-            <th>IMAGEM</th>
-            <th>EXCLUIR</th>
-        </tr>
-
-        {% for item in resultado %}
-
-        <tr>
+        <table class="table table-bordered tabela-estoque">
+            <tr>
+                <th>ID</th>
+                <th>RESPONSÁVEL</th>
+                <th>NOME</th>
+                <th>QUANTIDADE</th>
+                <th>QUANTIDADE MIN</th>
+                <th>PREÇO</th>
+                <th>DESCRIÇÃO</th>
+                <th>IMAGEM</th>
+                <th>EXCLUIR</th>
+            </tr>
+    
+            {% for item in resultado %}
+    
+            <tr>
             <td>{{item[0]}}</td>
             <td>{{item[1]}}</td>
             <td>{{item[2]}}</td>
             <td>{{item[3]}}</td>
+            <td>{{item[4]}}</td>
 
+            <!-- PREÇO -->
+            <td>R$ {{item[5]}}</td>
+
+            <!-- DESCRIÇÃO (Item 6) -->
             <td>
-                <button class="btn btn-primary btn-sm"
+                <button class="btn btn-info btn-sm"
                         data-bs-toggle="modal"
-                        data-bs-target="#modal{{item[0]}}">
-                    <span class="material-symbols-outlined">photo_camera</span>
+                        data-bs-target="#descricao{{item[0]}}">
+                    <span class="material-symbols-outlined">
+                        description
+                    </span>
                 </button>
             </td>
 
+            <!-- IMAGEM (Item 7)-->
+            <td>
+                <button class="btn btn-primary btn-sm"
+                        data-bs-toggle="modal"
+                        data-bs-target="#imagem{{item[0]}}">
+                    <span class="material-symbols-outlined">
+                        photo_camera
+                    </span>
+                </button>
+            </td>
+
+            <!-- EXCLUIR (Item 9) -->
             <td>
                 <button class="btn btn-danger btn-sm"
-                        onclick="excluirItem('{{ item[0] }}')">
+                        onclick="excluirItem('{{item[0]}}')">
                     <span class="material-symbols-outlined">
                         delete
                     </span>
@@ -87,26 +109,66 @@
         {% endfor %}
     </table>
 </div>
-
-{% for item in resultado %}
-<div class="modal fade" id="modal{{item[0]}}" tabindex="-1">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-
-            <div class="modal-header">
-                <h5 class="modal-title">{{item[2]}}</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+    
+    {% for item in resultado %}
+    
+    <!-- MODAL DESCRIÇÃO -->
+    <div class="modal fade" id="descricao{{item[0]}}" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+    
+                <div class="modal-header">
+                    <h5 class="modal-title">
+                        {{item[2]}}
+                    </h5>
+    
+                    <button type="button"
+                            class="btn-close"
+                            data-bs-dismiss="modal">
+                    </button>
+                </div>
+    
+                <div class="modal-body">
+                    {{item[6]}}
+                </div>
+    
             </div>
-
-            <div class="modal-body text-center">
-                <img src="{{item[4]}}" class="img-fluid" style="max-height:400px;">
-            </div>
-
         </div>
     </div>
-</div>
-
-{% endfor %}
+    
+    <!-- MODAL IMAGEM -->
+    <div class="modal fade" id="imagem{{item[0]}}" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+    
+                <div class="modal-header">
+                    <h5 class="modal-title">
+                        {{item[2]}}
+                    </h5>
+    
+                    <button type="button"
+                            class="btn-close"
+                            data-bs-dismiss="modal">
+                    </button>
+                </div>
+    
+                <div class="modal-body text-center">
+    
+                    {% if item[7] %}
+                        <img src="{{item[7]}}"
+                             class="img-fluid"
+                             style="max-height:400px;">
+                    {% else %}
+                        <p>Nenhuma imagem cadastrada.</p>
+                    {% endif %}
+    
+                </div>
+    
+            </div>
+        </div>
+    </div>
+    
+    {% endfor %}
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
