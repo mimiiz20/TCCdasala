@@ -13,7 +13,6 @@ def get_db():
         user='root',
         password='',
         database='almoxarifado',
-        port=3306
     )
 
 # AUTORIZAÇÃO
@@ -78,9 +77,8 @@ def tabela():
 
     return render_template('tabela.html', resultado=resultado)
 
-# -----------------------------
 # ENTRADA / SAÍDA ESTOQUE
-# -----------------------------
+
 @app.route('/entrada', methods=['POST'])
 def entrada():
 
@@ -94,13 +92,22 @@ def entrada():
     tipo = request.form.get('tipo')
     imagem = request.files.get("imagem")
 
-    # validação básica
+    caminho_imagem = ""
+
+    if imagem:
+        nome_arquivo = secure_filename(imagem.filename)
+
+        pasta = os.path.join("static", "uploads")
+        os.makedirs(pasta, exist_ok=True)
+
+        caminho_salvar = os.path.join(pasta, nome_arquivo)
+        imagem.save(caminho_salvar)
+
+        caminho_imagem = url_for('static', filename=f'uploads/{nome_arquivo}')
+
     if not nome or not qtde or not responsavel or not tipo:
         return jsonify({"success": False, "erro": "Campos obrigatórios"}), 400
-
     qtde = int(qtde)
-    estoque_min = int(estoque_min) if estoque_min else 0
-    preco = float(preco) if preco else 0
 
     conexao = get_db()
     cursor = conexao.cursor()
@@ -108,9 +115,34 @@ def entrada():
     cursor.execute("SELECT qtde, preco FROM estoque WHERE nome = %s", (nome,))
     item = cursor.fetchone()
 
-    # -----------------------------
-    # ENTRADA (SOMA)
-    # -----------------------------
+    if item:
+
+        cursor.execute("""
+            SELECT categoria, estoque_min, descricao, preco
+            FROM estoque
+            WHERE nome = %s
+        """, (nome,))
+
+        dados = cursor.fetchone()
+
+        categoria_atual, estoque_min_atual, descricao_atual, preco_atual = dados
+
+        categoria = categoria if categoria else categoria_atual
+
+        estoque_min = (
+            int(estoque_min)
+            if estoque_min
+            else estoque_min_atual
+        )
+
+        descricao = descricao if descricao else descricao_atual
+
+        if preco:
+            preco = float(preco)
+        else:
+            preco = 0
+
+# ENTRADA (SOMA)
     if tipo == "entrada":
 
         if item:
@@ -125,42 +157,69 @@ def entrada():
                     estoque_min = %s,
                     categoria = %s,
                     preco = %s,
-                    descricao = %s
+                    descricao = %s,
+                    imagem = %s
                 WHERE nome = %s
-            """, (nova_qtde, estoque_min, categoria, novo_preco, descricao, nome))
+            """, (nova_qtde, estoque_min, categoria, novo_preco, descricao, nome, imagem))
 
         else:
             cursor.execute("""
                 INSERT INTO estoque
                 (responsavel, nome, categoria, qtde, estoque_min, descricao, preco, imagem)
                 VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
-            """, (responsavel, nome, categoria, qtde, estoque_min, descricao, preco, None))
+            """, (responsavel, nome, categoria, qtde, estoque_min, descricao, preco, caminho_imagem))
 
         conexao.commit()
 
-    # -----------------------------
-    # SAÍDA (SUBTRAI)
-    # -----------------------------
+
+# SAÍDA (SUBTRAI)
     elif tipo == "saida":
 
-        cursor.execute("SELECT qtde FROM estoque WHERE nome = %s", (nome,))
+        cursor.execute(
+            "SELECT qtde, preco FROM estoque WHERE nome = %s",
+            (nome,)
+        )
+
         produto = cursor.fetchone()
 
         if not produto:
-            return jsonify({"success": False, "erro": "Produto não encontrado"}), 404
+            return jsonify({
+                "success": False,
+                "erro": "Produto não encontrado"
+            }), 404
 
-        qtde_atual = produto[0]
+        qtde_atual, preco_atual = produto
 
         if qtde_atual < qtde:
-            return jsonify({"success": False, "erro": "Estoque insuficiente"}), 400
+            return jsonify({
+                "success": False,
+                "erro": "Estoque insuficiente"
+            }), 400
 
         nova_qtde = qtde_atual - qtde
+        novo_preco = float(preco_atual) - float(preco)
+
+        if novo_preco < 0:
+            novo_preco = 0
 
         cursor.execute("""
             UPDATE estoque
-            SET qtde = %s
+            SET qtde = %s,
+                estoque_min = %s,
+                categoria = %s,
+                preco = %s,
+                descricao = %s,
+                imagem = %s
             WHERE nome = %s
-        """, (nova_qtde, nome))
+        """, (
+            nova_qtde,
+            estoque_min,
+            categoria,
+            novo_preco,
+            descricao,
+            caminho_imagem,
+            nome
+        ))
 
         conexao.commit()
 
@@ -219,10 +278,14 @@ def acesso():
 @app.route('/excluirUsuario/<int:id>', methods=['DELETE'])
 def excluir_usuario(id):
 
+    print("ID recebido:", id)
+
     conexao = get_db()
     cursor = conexao.cursor()
 
     cursor.execute("DELETE FROM usuarios WHERE id = %s", (id,))
+    print("Linhas afetadas:", cursor.rowcount)
+
     conexao.commit()
 
     cursor.close()
