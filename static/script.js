@@ -11,11 +11,20 @@ function salvarRascunho() {
     const nome = document.getElementById("nome")?.value;
     const qtde = document.getElementById("qtde")?.value;
     const responsavel = document.getElementById("responsavel")?.value;
+    const preco = document.getElementById("preco")?.value;
+    const estoque_min = document.getElementById("estoque_min")?.value;
+    const descricao = document.getElementById("descricao")?.value;
+    const categoria = document.getElementById("categoria")?.value;
 
     const dados = {
         nome,
         qtde,
-        responsavel
+        responsavel,
+        preco,
+        estoque_min,
+        descricao,
+        categoria,
+        tipoMovimentacao: window.tipoMovimentacao || ""
     };
 
     localStorage.setItem("rascunho_editar", JSON.stringify(dados));
@@ -33,7 +42,7 @@ window.addEventListener("DOMContentLoaded", () => {
     const btnUpload = document.getElementById("btnUpload");
     const fileInput = document.getElementById("fileInput");
 
-    let tipoMovimentacao = "";
+    window.tipoMovimentacao = "";
 
     function limparSelecao() {
         btnEntrada?.classList.remove("btn-selecionado");
@@ -45,16 +54,28 @@ window.addEventListener("DOMContentLoaded", () => {
     const rascunho = JSON.parse(localStorage.getItem("rascunho_editar"));
 
     if (rascunho) {
-        if (document.getElementById("nome"))
-            document.getElementById("nome").value = rascunho.nome || "";
 
-        if (document.getElementById("qtde"))
-            document.getElementById("qtde").value = rascunho.qtde || "";
+        document.getElementById("nome").value = rascunho.nome || "";
+        document.getElementById("qtde").value = rascunho.qtde || "";
+        document.getElementById("responsavel").value = rascunho.responsavel || "";
+        document.getElementById("preco").value = rascunho.preco || "";
+        document.getElementById("estoque_min").value = rascunho.estoque_min || "";
+        document.getElementById("descricao").value = rascunho.descricao || "";
+        document.getElementById("categoria").value = rascunho.categoria || "";
 
-        if (document.getElementById("responsavel"))
-            document.getElementById("responsavel").value = rascunho.responsavel || "";
+        window.tipoMovimentacao = rascunho.tipoMovimentacao || "";
+
+    // RESTAURA BOTÕES
+    limparSelecao();
+
+    if (window.tipoMovimentacao === "entrada") {
+        document.getElementById("btnEntrada")?.classList.add("btn-selecionado");
     }
 
+    if (window.tipoMovimentacao === "saida") {
+        document.getElementById("btnSaida")?.classList.add("btn-selecionado");
+    }
+}
 
     // SALVAR ENQUANTO DIGITA
     document.addEventListener("input", salvarRascunho);
@@ -62,17 +83,19 @@ window.addEventListener("DOMContentLoaded", () => {
 
     // ENTRADA
     btnEntrada?.addEventListener("click", () => {
-        tipoMovimentacao = "entrada";
+        window.tipoMovimentacao = "entrada";
         limparSelecao();
         btnEntrada.classList.add("btn-selecionado");
+        salvarRascunho();
     });
 
 
     // SAÍDA
     btnSaida?.addEventListener("click", () => {
-        tipoMovimentacao = "saida";
+        window.tipoMovimentacao = "saida";
         limparSelecao();
         btnSaida.classList.add("btn-selecionado");
+        salvarRascunho();
     });
 
 

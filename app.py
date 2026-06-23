@@ -7,7 +7,6 @@ app = Flask(__name__)
 app.secret_key = "chave_secreta_123"
 
 # CONEXÃO
-
 def get_db():
     return mysql.connector.connect(
         host='127.0.0.1',
@@ -18,7 +17,6 @@ def get_db():
     )
 
 # AUTORIZAÇÃO
-
 def login_required():
     return 'usuario' in session
 
@@ -26,16 +24,13 @@ def admin_required():
     return session.get('tipo') == 'admin'
 
 # HOME
-
 @app.route('/')
 def home():
     return render_template('index.html')
 
 # LOGIN
-
 @app.route('/login', methods=['POST'])
 def login():
-
     email = request.form.get('email')
     senha = request.form.get('senha')
 
@@ -61,17 +56,14 @@ def login():
     return "Email ou senha inválidos"
 
 # LOGOUT
-
 @app.route('/logout')
 def logout():
     session.clear()
     return redirect(url_for('home'))
 
 # TABELA
-
 @app.route('/tabela')
 def tabela():
-
     if not login_required():
         return redirect('/')
 
@@ -86,8 +78,9 @@ def tabela():
 
     return render_template('tabela.html', resultado=resultado)
 
+# -----------------------------
 # ENTRADA / SAÍDA ESTOQUE
-
+# -----------------------------
 @app.route('/entrada', methods=['POST'])
 def entrada():
 
@@ -101,80 +94,67 @@ def entrada():
     tipo = request.form.get('tipo')
     imagem = request.files.get("imagem")
 
-    # VALIDAÇÃO
-    if not nome or not qtde or not responsavel or not tipo or not estoque_min or not preco:
+    # validação básica
+    if not nome or not qtde or not responsavel or not tipo:
         return jsonify({"success": False, "erro": "Campos obrigatórios"}), 400
 
     qtde = int(qtde)
-    estoque_min = int(estoque_min)
-    preco = float(preco)
-
-    # UPLOAD IMAGEM
-    caminho_imagem = None
-
-    if imagem:
-        nome_arquivo = secure_filename(imagem.filename)
-
-        pasta = os.path.join("static", "uploads")
-        os.makedirs(pasta, exist_ok=True)
-
-        caminho_salvar = os.path.join(pasta, nome_arquivo)
-        imagem.save(caminho_salvar)
-
-        caminho_imagem = url_for('static', filename=f'uploads/{nome_arquivo}')
+    estoque_min = int(estoque_min) if estoque_min else 0
+    preco = float(preco) if preco else 0
 
     conexao = get_db()
     cursor = conexao.cursor()
 
-    cursor.execute("SELECT id FROM estoque WHERE nome = %s", (nome,))
+    cursor.execute("SELECT qtde, preco FROM estoque WHERE nome = %s", (nome,))
     item = cursor.fetchone()
 
-
-    # ENTRADA
-
+    # -----------------------------
+    # ENTRADA (SOMA)
+    # -----------------------------
     if tipo == "entrada":
 
         if item:
+            qtde_atual, preco_atual = item
+
+            nova_qtde = qtde_atual + qtde
+            novo_preco = float(preco_atual) + float(preco)
+
             cursor.execute("""
                 UPDATE estoque
-                SET qtde = qtde + %s,
+                SET qtde = %s,
                     estoque_min = %s,
                     categoria = %s,
                     preco = %s,
                     descricao = %s
                 WHERE nome = %s
-            """, (qtde, estoque_min, categoria, preco, descricao, nome))
+            """, (nova_qtde, estoque_min, categoria, novo_preco, descricao, nome))
+
         else:
             cursor.execute("""
-                INSERT INTO estoque (responsavel, nome, categoria, qtde, estoque_min, descricao, preco, imagem)
+                INSERT INTO estoque
+                (responsavel, nome, categoria, qtde, estoque_min, descricao, preco, imagem)
                 VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
-            """, (responsavel, nome, categoria, qtde, estoque_min, descricao, preco, caminho_imagem))
+            """, (responsavel, nome, categoria, qtde, estoque_min, descricao, preco, None))
 
         conexao.commit()
 
-    # SAÍDA
-    
+    # -----------------------------
+    # SAÍDA (SUBTRAI)
+    # -----------------------------
     elif tipo == "saida":
 
-        if qtde <= 0:
-            return jsonify({"success": False, "erro": "Quantidade inválida"}), 400
-
-        if preco < 0:
-            return jsonify({"success": False, "erro": "Preço inválido"}), 400
-
-        cursor.execute("""
-            SELECT qtde FROM estoque WHERE nome = %s
-        """, (nome,))
-
+        cursor.execute("SELECT qtde FROM estoque WHERE nome = %s", (nome,))
         produto = cursor.fetchone()
 
         if not produto:
             return jsonify({"success": False, "erro": "Produto não encontrado"}), 404
 
-        if produto[0] < qtde:
+        qtde_atual = produto[0]
+
+        if qtde_atual < qtde:
             return jsonify({"success": False, "erro": "Estoque insuficiente"}), 400
 
-        nova_qtde = produto[0] - qtde
+        nova_qtde = qtde_atual - qtde
 
         cursor.execute("""
             UPDATE estoque
@@ -185,10 +165,7 @@ def entrada():
         conexao.commit()
 
     else:
-        return jsonify({
-            "success": False,
-            "erro": "Tipo inválido (entrada ou saída)"
-        }), 400
+        return jsonify({"success": False, "erro": "Tipo inválido"}), 400
 
     cursor.close()
     conexao.close()
@@ -196,7 +173,6 @@ def entrada():
     return jsonify({"success": True}), 200
 
 # EXCLUIR ITEM
-
 @app.route('/excluir/<int:id>', methods=['DELETE'])
 def excluir(id):
 
@@ -212,20 +188,16 @@ def excluir(id):
     return jsonify({"success": True})
 
 # EDITAR
-
 @app.route('/editar')
 def editar():
-
     if not login_required():
         return redirect('/')
 
     return render_template('editar.html')
 
-# ACESSO (ADMIN)
-
+# ACESSO
 @app.route('/acesso')
 def acesso():
-
     if not login_required():
         return redirect('/')
 
@@ -244,7 +216,6 @@ def acesso():
     return render_template('acesso.html', resultado=resultado)
 
 # EXCLUIR USUÁRIO
-
 @app.route('/excluirUsuario/<int:id>', methods=['DELETE'])
 def excluir_usuario(id):
 
@@ -260,7 +231,6 @@ def excluir_usuario(id):
     return jsonify({"success": True})
 
 # CADASTRO
-
 @app.route('/cadastro', methods=['GET', 'POST'])
 def cadastro():
 
@@ -292,7 +262,6 @@ def cadastro():
 
     return redirect('/acesso')
 
-# RODAR O CÓDIGO
-
+# RODAR
 if __name__ == '__main__':
     app.run(debug=True, host="0.0.0.0", port=5000)
