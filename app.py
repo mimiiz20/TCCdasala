@@ -136,47 +136,55 @@ def entrada():
                 SET qtde = qtde + %s,
                 estoque_min = %s,
                 categoria = %s,
-                preco = %s
+                preco = %s,
                 descricao = %s,
                 WHERE nome = %s
-            """, (qtde, estoque_min, preco, descricao, nome))
+            """, (qtde, estoque_min, categoria, preco, descricao, nome))
         else:
             cursor.execute("""
                 INSERT INTO estoque (responsavel, nome, categoria, qtde, estoque_min, descricao, preco, imagem)
-                VALUES (%s, %s, %s, %s, %s, %s, %s)
-            """, (responsavel, nome, qtde, estoque_min, descricao, preco, caminho_imagem))
+                VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
+            """, (responsavel, nome, categoria, qtde, estoque_min, descricao, preco, caminho_imagem))
 
     elif tipo == "saida":
 
-# Evita valores negativos aparentemente
+        qtde = int(qtde)
+        preco = float(preco)
+
+        if qtde <= 0:
+            return jsonify({
+                "success": False,
+                "erro": "A quantidade deve ser maior que zero"
+            }), 400
+
+        if preco < 0:
+            return jsonify({
+                "success": False,
+                "erro": "O preço não pode ser negativo"
+            }), 400
+
         cursor.execute(
-        "SELECT qtde FROM estoque WHERE nome = %s",
-        (nome,)
+            "SELECT qtde FROM estoque WHERE nome = %s",
+            (nome,)
         )
 
         produto = cursor.fetchone()
 
         if produto and produto[0] >= qtde:
+
+            nova_qtde = produto[0] - qtde
+
             cursor.execute("""
                 UPDATE estoque
-                SET qtde = qtde - %s
-                estoque_min = %s,
-                categoria = %s,
-                preco = %s
-                descricao = %s,
+                SET qtde = %s
                 WHERE nome = %s
-            """, (qtde, estoque_min, descricao, preco, nome))
-        else:
-            return jsonify({
-                "success": False,
-                "erro": "Quantidade insuficiente em estoque"
-            }), 400
+        """, (nova_qtde, nome))
 
-    conexao.commit()
-    cursor.close()
-    conexao.close()
-
-    return jsonify({"success": True})
+    else:
+        return jsonify({
+            "success": False,
+            "erro": "Quantidade insuficiente em estoque"
+        }), 400
 
 # Excluir item do estoque
 

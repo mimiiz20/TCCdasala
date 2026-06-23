@@ -302,9 +302,9 @@ body::-webkit-scrollbar {
 }
 
 #main-editar {
-  max-width: 700px;
-  margin: 20px auto 30px;
-  padding: 25px;
+  max-width: 968px;
+  margin: 5px auto 10px;
+  padding: 15px;
   background: #ffffff;
   border-radius: 12px;
   border: 2px solid #F28705;
@@ -316,7 +316,7 @@ body::-webkit-scrollbar {
   font-weight: bold;
   text-transform: uppercase;
   letter-spacing: .08em;
-  margin-bottom: 12px;
+  margin-bottom: 5px;
 }
 
 input {
@@ -390,10 +390,10 @@ input:focus {
 
 .drag-area {
   border: 2px dashed #1D3273;
-  border-radius: 12px;
+  border-radius: 11px;
   background: #f7f9fc;
   color: #1D3273;
-  padding: 30px;
+  padding: 14px;
   text-align: center;
   cursor: pointer;
   transition: 0.3s;

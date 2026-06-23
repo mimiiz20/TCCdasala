@@ -1,30 +1,28 @@
 // MUDAR PARA TABELA
 const botao = document.getElementById("btn-entrar");
 
-if (botao) {
-    botao.addEventListener("click", () => {
-        window.location.href = "/tabela";
-    });
-}
+botao?.addEventListener("click", () => {
+    window.location.href = "/tabela";
+});
+
 
 // SALVAR + CARREGAR RASCUNHO DA TELA EDITAR
-
 function salvarRascunho() {
-    const item = document.getElementById("item")?.value;
-    const quantidade = document.getElementById("quantidade")?.value;
+    const nome = document.getElementById("nome")?.value;
+    const qtde = document.getElementById("qtde")?.value;
     const responsavel = document.getElementById("responsavel")?.value;
 
     const dados = {
-        item,
-        quantidade,
+        nome,
+        qtde,
         responsavel
     };
 
     localStorage.setItem("rascunho_editar", JSON.stringify(dados));
 }
 
-// JS PRINCIPAL
 
+// JS PRINCIPAL
 window.addEventListener("DOMContentLoaded", () => {
 
     console.log("JS carregou com sucesso");
@@ -33,6 +31,7 @@ window.addEventListener("DOMContentLoaded", () => {
     const btnSaida = document.getElementById("btnSaida");
     const btnRegistrar = document.getElementById("btnRegistrar");
     const btnUpload = document.getElementById("btnUpload");
+    const fileInput = document.getElementById("fileInput");
 
     let tipoMovimentacao = "";
 
@@ -42,20 +41,20 @@ window.addEventListener("DOMContentLoaded", () => {
     }
 
 
-    // CARREGAR RASCUNHO DA TELA EDITAR AO ABRIR NOVAMENTE
-
+    // CARREGAR RASCUNHO
     const rascunho = JSON.parse(localStorage.getItem("rascunho_editar"));
 
     if (rascunho) {
-        if (document.getElementById("item"))
-            document.getElementById("item").value = rascunho.item || "";
+        if (document.getElementById("nome"))
+            document.getElementById("nome").value = rascunho.nome || "";
 
-        if (document.getElementById("quantidade"))
-            document.getElementById("quantidade").value = rascunho.quantidade || "";
+        if (document.getElementById("qtde"))
+            document.getElementById("qtde").value = rascunho.qtde || "";
 
         if (document.getElementById("responsavel"))
             document.getElementById("responsavel").value = rascunho.responsavel || "";
     }
+
 
     // SALVAR ENQUANTO DIGITA
     document.addEventListener("input", salvarRascunho);
@@ -68,12 +67,14 @@ window.addEventListener("DOMContentLoaded", () => {
         btnEntrada.classList.add("btn-selecionado");
     });
 
+
     // SAÍDA
     btnSaida?.addEventListener("click", () => {
         tipoMovimentacao = "saida";
         limparSelecao();
         btnSaida.classList.add("btn-selecionado");
     });
+
 
     // REGISTRAR
     btnRegistrar?.addEventListener("click", async () => {
@@ -83,43 +84,84 @@ window.addEventListener("DOMContentLoaded", () => {
             return;
         }
 
-        const item = document.getElementById("item").value;
-        const quantidade = document.getElementById("quantidade").value;
+        const nome = document.getElementById("nome").value;
+        const qtde = document.getElementById("qtde").value;
         const responsavel = document.getElementById("responsavel").value;
-        const imagem = document.getElementById("fileInput").files[0];
+        const preco = document.getElementById("preco").value;
+        const estoque_min = document.getElementById("estoque_min").value;
+        const descricao = document.getElementById("descricao").value;
+        const categoria = document.getElementById("categoria").value;
+        const imagem = fileInput?.files[0];
 
         const formData = new FormData();
-        formData.append("nome", item);
-        formData.append("qtde", quantidade);
+
+        formData.append("nome", nome);
+        formData.append("qtde", qtde);
         formData.append("responsavel", responsavel);
+        formData.append("preco", preco);
+        formData.append("estoque_min", estoque_min);
+        formData.append("descricao", descricao);
+        formData.append("categoria", categoria);
         formData.append("tipo", tipoMovimentacao);
 
         if (imagem) {
             formData.append("imagem", imagem);
         }
 
-        const resposta = await fetch("/entrada", {
-            method: "POST",
-            body: formData
-        });
+        try {
 
-        const data = await resposta.json();
+            const resposta = await fetch("/entrada", {
+                method: "POST",
+                body: formData
+            });
 
-        if (data.success) {
-            alert("Registro salvo com sucesso!");
+            const data = await resposta.json();
 
-            // LIMPA RASCUNHO AO SALVAR DE VERDADE
-            localStorage.removeItem("rascunho_editar");
+            const msg = document.getElementById("mensagem");
 
-            window.location.href = "/tabela";
-        } else {
-            alert("Erro ao salvar");
+            if (data.success) {
+
+                localStorage.removeItem("rascunho_editar");
+
+                msg.innerText = "Registro salvo com sucesso ✔";
+                msg.style.color = "green";
+
+                setTimeout(() => {
+                    window.location.href = "/tabela";
+                }, 1000);
+
+            } else {
+
+                msg.innerText = data.erro || "Erro ao salvar";
+                msg.style.color = "red";
+            }
+
+        } catch (erro) {
+
+            console.error(erro);
+
+            const msg = document.getElementById("mensagem");
+            msg.innerText = "Erro ao conectar com o servidor.";
+            msg.style.color = "red";
         }
     });
 
-    // UPLOAD
+
+    // UPLOAD (ABRIR INPUT)
     btnUpload?.addEventListener("click", () => {
-        document.getElementById("fileInput").click();
+        fileInput?.click();
+    });
+
+
+    // MENSAGEM QUANDO ESCOLHE IMAGEM 
+    fileInput?.addEventListener("change", () => {
+
+        const msg = document.getElementById("mensagem");
+
+        if (fileInput.files.length > 0) {
+            msg.innerText = "Imagem adicionada com sucesso ✔";
+            msg.style.color = "green";
+        }
     });
 
 
