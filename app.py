@@ -25,14 +25,13 @@ def login_required():
 def admin_required():
     return session.get('tipo') == 'admin'
 
-# HOME 
+# HOME
 
 @app.route('/')
 def home():
     return render_template('index.html')
 
-
-# Login da tela do index.html
+# LOGIN
 
 @app.route('/login', methods=['POST'])
 def login():
@@ -61,14 +60,14 @@ def login():
 
     return "Email ou senha inválidos"
 
-# LOGOUT (Ao clicar no botão de logout)
+# LOGOUT
 
 @app.route('/logout')
 def logout():
     session.clear()
     return redirect(url_for('home'))
 
-# TELA TABELA 
+# TABELA
 
 @app.route('/tabela')
 def tabela():
@@ -87,8 +86,8 @@ def tabela():
 
     return render_template('tabela.html', resultado=resultado)
 
-# ENTRADA / SAÍDA ESTOQUE 
-# Tive que mudar essa parte pra por novas informações na tabela
+# ENTRADA / SAÍDA ESTOQUE
+
 @app.route('/entrada', methods=['POST'])
 def entrada():
 
@@ -102,6 +101,7 @@ def entrada():
     tipo = request.form.get('tipo')
     imagem = request.files.get("imagem")
 
+    # VALIDAÇÃO
     if not nome or not qtde or not responsavel or not tipo or not estoque_min or not preco:
         return jsonify({"success": False, "erro": "Campos obrigatórios"}), 400
 
@@ -109,6 +109,7 @@ def entrada():
     estoque_min = int(estoque_min)
     preco = float(preco)
 
+    # UPLOAD IMAGEM
     caminho_imagem = None
 
     if imagem:
@@ -128,16 +129,19 @@ def entrada():
     cursor.execute("SELECT id FROM estoque WHERE nome = %s", (nome,))
     item = cursor.fetchone()
 
+
+    # ENTRADA
+
     if tipo == "entrada":
 
         if item:
             cursor.execute("""
                 UPDATE estoque
                 SET qtde = qtde + %s,
-                estoque_min = %s,
-                categoria = %s,
-                preco = %s,
-                descricao = %s,
+                    estoque_min = %s,
+                    categoria = %s,
+                    preco = %s,
+                    descricao = %s
                 WHERE nome = %s
             """, (qtde, estoque_min, categoria, preco, descricao, nome))
         else:
@@ -146,47 +150,52 @@ def entrada():
                 VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
             """, (responsavel, nome, categoria, qtde, estoque_min, descricao, preco, caminho_imagem))
 
+        conexao.commit()
+
+    # SAÍDA
+    
     elif tipo == "saida":
 
-        qtde = int(qtde)
-        preco = float(preco)
-
         if qtde <= 0:
-            return jsonify({
-                "success": False,
-                "erro": "A quantidade deve ser maior que zero"
-            }), 400
+            return jsonify({"success": False, "erro": "Quantidade inválida"}), 400
 
         if preco < 0:
-            return jsonify({
-                "success": False,
-                "erro": "O preço não pode ser negativo"
-            }), 400
+            return jsonify({"success": False, "erro": "Preço inválido"}), 400
 
-        cursor.execute(
-            "SELECT qtde FROM estoque WHERE nome = %s",
-            (nome,)
-        )
+        cursor.execute("""
+            SELECT qtde FROM estoque WHERE nome = %s
+        """, (nome,))
 
         produto = cursor.fetchone()
 
-        if produto and produto[0] >= qtde:
+        if not produto:
+            return jsonify({"success": False, "erro": "Produto não encontrado"}), 404
 
-            nova_qtde = produto[0] - qtde
+        if produto[0] < qtde:
+            return jsonify({"success": False, "erro": "Estoque insuficiente"}), 400
 
-            cursor.execute("""
-                UPDATE estoque
-                SET qtde = %s
-                WHERE nome = %s
+        nova_qtde = produto[0] - qtde
+
+        cursor.execute("""
+            UPDATE estoque
+            SET qtde = %s
+            WHERE nome = %s
         """, (nova_qtde, nome))
+
+        conexao.commit()
 
     else:
         return jsonify({
             "success": False,
-            "erro": "Quantidade insuficiente em estoque"
+            "erro": "Tipo inválido (entrada ou saída)"
         }), 400
 
-# Excluir item do estoque
+    cursor.close()
+    conexao.close()
+
+    return jsonify({"success": True}), 200
+
+# EXCLUIR ITEM
 
 @app.route('/excluir/<int:id>', methods=['DELETE'])
 def excluir(id):
@@ -202,7 +211,7 @@ def excluir(id):
 
     return jsonify({"success": True})
 
-# TELA EDITAR
+# EDITAR
 
 @app.route('/editar')
 def editar():
@@ -212,7 +221,7 @@ def editar():
 
     return render_template('editar.html')
 
-# TELA ACESSO (Apenas para admin)
+# ACESSO (ADMIN)
 
 @app.route('/acesso')
 def acesso():
@@ -234,7 +243,7 @@ def acesso():
 
     return render_template('acesso.html', resultado=resultado)
 
-# Função de excluir usuário (Apenas para admin)
+# EXCLUIR USUÁRIO
 
 @app.route('/excluirUsuario/<int:id>', methods=['DELETE'])
 def excluir_usuario(id):
@@ -250,7 +259,7 @@ def excluir_usuario(id):
 
     return jsonify({"success": True})
 
-# TELA CADASTRO DE USUÁRIOS (Apenas para admin)
+# CADASTRO
 
 @app.route('/cadastro', methods=['GET', 'POST'])
 def cadastro():
@@ -283,7 +292,7 @@ def cadastro():
 
     return redirect('/acesso')
 
-# RODAR A APLICAÇÃO
+# RODAR O CÓDIGO
 
 if __name__ == '__main__':
     app.run(debug=True, host="0.0.0.0", port=5000)
