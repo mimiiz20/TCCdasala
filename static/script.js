@@ -6,7 +6,7 @@ botao?.addEventListener("click", () => {
 });
 
 
-// SALVAR + CARREGAR RASCUNHO DA TELA EDITAR
+// SALVAR + CARREGAR RASCUNHO
 function salvarRascunho() {
     const nome = document.getElementById("nome")?.value;
     const qtde = document.getElementById("qtde")?.value;
@@ -30,6 +30,47 @@ function salvarRascunho() {
     localStorage.setItem("rascunho_editar", JSON.stringify(dados));
 }
 
+// EXCLUIR USUÁRIO 
+window.excluirUsuario = async function (id) {
+
+    const confirmacao = confirm("Tem certeza que deseja excluir este usuário?");
+    if (!confirmacao) return;
+
+    const resposta = await fetch(`/excluirUsuario/${id}`, {
+        method: "DELETE"
+    });
+
+    const data = await resposta.json();
+
+    if (data.success) {
+        alert("Usuário excluído com sucesso!");
+        location.reload();
+    } else {
+        alert("Erro ao excluir usuário");
+    }
+};
+
+
+// EXCLUIR ITEM
+window.excluirItem = async function (id) {
+
+    const confirmacao = confirm("Tem certeza que deseja excluir este item?");
+    if (!confirmacao) return;
+
+    const resposta = await fetch(`/excluir/${id}`, {
+        method: "DELETE"
+    });
+
+    const data = await resposta.json();
+
+    if (data.success) {
+        alert("Item excluído com sucesso!");
+        location.reload();
+    } else {
+        alert("Erro ao excluir");
+    }
+};
+
 
 // JS PRINCIPAL
 window.addEventListener("DOMContentLoaded", () => {
@@ -49,11 +90,10 @@ window.addEventListener("DOMContentLoaded", () => {
         btnSaida?.classList.remove("btn-selecionado");
     }
 
-
     // CARREGAR RASCUNHO
     const rascunho = JSON.parse(localStorage.getItem("rascunho_editar"));
 
-    if (rascunho) {
+    if (rascunho && document.getElementById("nome")) {
 
         document.getElementById("nome").value = rascunho.nome || "";
         document.getElementById("qtde").value = rascunho.qtde || "";
@@ -64,8 +104,8 @@ window.addEventListener("DOMContentLoaded", () => {
         document.getElementById("categoria").value = rascunho.categoria || "";
 
         window.tipoMovimentacao = rascunho.tipoMovimentacao || "";
+    }
 
-    // RESTAURA BOTÕES
     limparSelecao();
 
     if (window.tipoMovimentacao === "entrada") {
@@ -75,13 +115,9 @@ window.addEventListener("DOMContentLoaded", () => {
     if (window.tipoMovimentacao === "saida") {
         document.getElementById("btnSaida")?.classList.add("btn-selecionado");
     }
-}
 
-    // SALVAR ENQUANTO DIGITA
     document.addEventListener("input", salvarRascunho);
 
-
-    // ENTRADA
     btnEntrada?.addEventListener("click", () => {
         window.tipoMovimentacao = "entrada";
         limparSelecao();
@@ -89,8 +125,6 @@ window.addEventListener("DOMContentLoaded", () => {
         salvarRascunho();
     });
 
-
-    // SAÍDA
     btnSaida?.addEventListener("click", () => {
         window.tipoMovimentacao = "saida";
         limparSelecao();
@@ -98,11 +132,9 @@ window.addEventListener("DOMContentLoaded", () => {
         salvarRascunho();
     });
 
-
-    // REGISTRAR
     btnRegistrar?.addEventListener("click", async () => {
 
-        if (!tipoMovimentacao) {
+        if (!window.tipoMovimentacao) {
             alert("Selecione Entrada ou Saída.");
             return;
         }
@@ -125,27 +157,23 @@ window.addEventListener("DOMContentLoaded", () => {
         formData.append("estoque_min", estoque_min);
         formData.append("descricao", descricao);
         formData.append("categoria", categoria);
-        formData.append("tipo", tipoMovimentacao);
+        formData.append("tipo", window.tipoMovimentacao);
 
         if (imagem) {
             formData.append("imagem", imagem);
         }
 
-        try {
-
-            const resposta = await fetch("/entrada", {
-                method: "POST",
-                body: formData
-            });
-
-            const data = await resposta.json();
+        fetch("/entrada", {
+            method: "POST",
+            body: formData
+        })
+        .then(res => res.json())
+        .then(data => {
 
             const msg = document.getElementById("mensagem");
 
             if (data.success) {
-
                 localStorage.removeItem("rascunho_editar");
-
                 msg.innerText = "Registro salvo com sucesso ✔";
                 msg.style.color = "green";
 
@@ -154,31 +182,22 @@ window.addEventListener("DOMContentLoaded", () => {
                 }, 1000);
 
             } else {
-
                 msg.innerText = data.erro || "Erro ao salvar";
                 msg.style.color = "red";
             }
-
-        } catch (erro) {
-
-            console.error(erro);
-
+        })
+        .catch(() => {
             const msg = document.getElementById("mensagem");
             msg.innerText = "Erro ao conectar com o servidor.";
             msg.style.color = "red";
-        }
+        });
     });
 
-
-    // UPLOAD (ABRIR INPUT)
     btnUpload?.addEventListener("click", () => {
         fileInput?.click();
     });
 
-
-    // MENSAGEM QUANDO ESCOLHE IMAGEM 
     fileInput?.addEventListener("change", () => {
-
         const msg = document.getElementById("mensagem");
 
         if (fileInput.files.length > 0) {
@@ -186,47 +205,4 @@ window.addEventListener("DOMContentLoaded", () => {
             msg.style.color = "green";
         }
     });
-
-
-    // EXCLUIR ITEM
-    window.excluirItem = async function(id) {
-
-        const confirmacao = confirm("Tem certeza que deseja excluir este item?");
-        if (!confirmacao) return;
-
-        const resposta = await fetch(`/excluir/${id}`, {
-            method: "DELETE"
-        });
-
-        const data = await resposta.json();
-
-        if (data.success) {
-            alert("Item excluído com sucesso!");
-            location.reload();
-        } else {
-            alert("Erro ao excluir");
-        }
-    };
-
-
-    // EXCLUIR USUÁRIO
-    window.excluirUsuario = async function(id) {
-
-        const confirmacao = confirm("Tem certeza que deseja excluir este usuário?");
-        if (!confirmacao) return;
-
-        const resposta = await fetch(`/excluirUsuario/${id}`, {
-            method: "DELETE"
-        });
-
-        const data = await resposta.json();
-
-        if (data.success) {
-            alert("Usuário excluído com sucesso!");
-            location.reload();
-        } else {
-            alert("Erro ao excluir usuário");
-        }
-    };
-
 });

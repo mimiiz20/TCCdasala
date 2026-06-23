@@ -78,8 +78,9 @@ def tabela():
 
     return render_template('tabela.html', resultado=resultado)
 
+# -----------------------------
 # ENTRADA / SAÍDA ESTOQUE
-
+# -----------------------------
 @app.route('/entrada', methods=['POST'])
 def entrada():
 
@@ -107,8 +108,9 @@ def entrada():
     cursor.execute("SELECT qtde, preco FROM estoque WHERE nome = %s", (nome,))
     item = cursor.fetchone()
 
+    # -----------------------------
     # ENTRADA (SOMA)
-
+    # -----------------------------
     if tipo == "entrada":
 
         if item:
@@ -136,8 +138,9 @@ def entrada():
 
         conexao.commit()
 
+    # -----------------------------
     # SAÍDA (SUBTRAI)
-
+    # -----------------------------
     elif tipo == "saida":
 
         cursor.execute("SELECT qtde FROM estoque WHERE nome = %s", (nome,))
