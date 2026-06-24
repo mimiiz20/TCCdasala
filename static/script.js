@@ -75,8 +75,6 @@ window.excluirItem = async function (id) {
 // JS PRINCIPAL
 window.addEventListener("DOMContentLoaded", () => {
 
-    console.log("JS carregou com sucesso");
-
     const btnEntrada = document.getElementById("btnEntrada");
     const btnSaida = document.getElementById("btnSaida");
     const btnRegistrar = document.getElementById("btnRegistrar");
