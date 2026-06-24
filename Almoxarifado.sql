@@ -18,8 +18,8 @@ CREATE TABLE usuarios (
     id INT PRIMARY KEY AUTO_INCREMENT,
     user VARCHAR(100) NOT NULL,
     email VARCHAR(100) NOT NULL UNIQUE,
-    senha VARCHAR(255) NOT NULL,
-    tipo VARCHAR(20) NOT NULL DEFAULT 'usuario'
+    tipo VARCHAR(20) NOT NULL DEFAULT 'usuario',
+    senha VARCHAR(255) NOT NULL
 );
 
 INSERT INTO estoque (responsavel, nome, categoria, qtde, estoque_min, preco, descricao, imagem)
@@ -27,14 +27,16 @@ VALUES ("Róger", "Chave Fenda", "Ferramenta", 12, 24, 25.00, "Chave de fenda pe
 INSERT INTO estoque (responsavel, nome, categoria, qtde, estoque_min, preco, descricao, imagem)
 VALUES ("Viviane", "Alicate", "Ferramenta", 8, 28, 28.00, "Alicate da marca Tramontina", "/static/alicate.jpg");
 
-INSERT INTO usuarios (user, email, senha, tipo)
-VALUES ('Administrador', 'admin@empresa.com', '123456', 'admin');
-INSERT INTO usuarios (user, email, senha, tipo)
-VALUES ('João', 'joao@empresa.com', '123456', 'usuário');	
+INSERT INTO usuarios (user, email, tipo, senha)
+VALUES ('Administrador', 'admin@empresa.com', 'admin', '123456');
+INSERT INTO usuarios (user, email, tipo, senha)
+VALUES ('João', 'joao@empresa.com', 'usuário', '123456');	
 
 SELECT * FROM estoque;
 SELECT * FROM usuarios;
 
 DROP TABLE estoque;
+DROP TABLE usuarios;
+
 TRUNCATE TABLE estoque;
 TRUNCATE TABLE usuarios;
