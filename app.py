@@ -278,13 +278,10 @@ def acesso():
 @app.route('/excluirUsuario/<int:id>', methods=['DELETE'])
 def excluir_usuario(id):
 
-    print("ID recebido:", id)
-
     conexao = get_db()
     cursor = conexao.cursor()
 
     cursor.execute("DELETE FROM usuarios WHERE id = %s", (id,))
-    print("Linhas afetadas:", cursor.rowcount)
 
     conexao.commit()
 
