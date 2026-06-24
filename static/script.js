@@ -144,7 +144,7 @@ window.addEventListener("DOMContentLoaded", () => {
         const estoque_min = document.getElementById("estoque_min").value;
         const descricao = document.getElementById("descricao").value;
         const categoria = document.getElementById("categoria").value;
-        const imagem = fileInput?.files[0];
+        const imagem = fileInput?.files?.[0];
 
         const formData = new FormData();
 
@@ -157,7 +157,7 @@ window.addEventListener("DOMContentLoaded", () => {
         formData.append("categoria", categoria);
         formData.append("tipo", window.tipoMovimentacao);
 
-        if (imagem) {
+        if (imagem && imagem.size > 0) {
             formData.append("imagem", imagem);
         }
 

@@ -92,8 +92,6 @@ def entrada():
     tipo = request.form.get('tipo')
     imagem = request.files.get("imagem")
 
-    caminho_imagem = ""
-
     if imagem:
         nome_arquivo = secure_filename(imagem.filename)
 
@@ -104,6 +102,15 @@ def entrada():
         imagem.save(caminho_salvar)
 
         caminho_imagem = url_for('static', filename=f'uploads/{nome_arquivo}')
+    else:
+        conexao = get_db()
+        cursor = conexao.cursor()
+
+        cursor.execute("SELECT imagem FROM estoque WHERE nome = %s", (nome,))
+        foto = cursor.fetchone()
+        caminho_imagem = foto[0]
+        cursor.close()
+        conexao.close()
 
     if not nome or not qtde or not responsavel or not tipo:
         return jsonify({"success": False, "erro": "Campos obrigatórios"}), 400
@@ -114,6 +121,7 @@ def entrada():
 
     cursor.execute("SELECT qtde, preco FROM estoque WHERE nome = %s", (nome,))
     item = cursor.fetchone()
+
 
     if item:
 
@@ -150,7 +158,7 @@ def entrada():
 
             nova_qtde = qtde_atual + qtde
             novo_preco = float(preco_atual) + float(preco)
-
+            
             cursor.execute("""
                 UPDATE estoque
                 SET qtde = %s,
@@ -160,8 +168,8 @@ def entrada():
                     descricao = %s,
                     imagem = %s
                 WHERE nome = %s
-            """, (nova_qtde, estoque_min, categoria, novo_preco, descricao, nome, imagem))
-
+            """, (nova_qtde, estoque_min, categoria, novo_preco, descricao, caminho_imagem, nome))
+            conexao.commit()
         else:
             cursor.execute("""
                 INSERT INTO estoque
@@ -170,7 +178,6 @@ def entrada():
             """, (responsavel, nome, categoria, qtde, estoque_min, descricao, preco, caminho_imagem))
 
         conexao.commit()
-
 
 # SAÍDA (SUBTRAI)
     elif tipo == "saida":
