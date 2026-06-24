@@ -92,6 +92,11 @@ body {
   margin: auto;
 }
 
+#erro-login{
+  text-align: center;
+  color: rgb(255, 0, 0)
+}
+
 #login-card{
   padding: 30px;
   background-color:#F0F1F2;

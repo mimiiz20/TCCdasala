@@ -52,7 +52,12 @@ def login():
         session['email'] = user[2]
         return redirect('/tabela')
 
-    return "Email ou senha inválidos"
+    return render_template ('login_erro.html', erro=True)
+
+# LOGIN INCORRETO
+@app.route('/login_erro.html')
+def login_erro():
+    return render_template('login_erro.html')
 
 # LOGOUT
 @app.route('/logout')
