@@ -11,7 +11,7 @@ def get_db():
     return mysql.connector.connect(
         host='127.0.0.1',
         user='root',
-        password='',
+        password='Mica@2009',
         database='almoxarifado',
     )
 
@@ -42,14 +42,15 @@ def login():
     """, (email, senha))
 
     user = cursor.fetchone()
+    print(user)
 
     cursor.close()
     conexao.close()
 
     if user:
         session['usuario'] = user[1]
-        session['tipo'] = user[4]
         session['email'] = user[2]
+        session['tipo'] = user[3]
         return redirect('/tabela')
 
     return render_template ('login_erro.html', erro=True)
