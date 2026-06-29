@@ -28,9 +28,9 @@ INSERT INTO estoque (responsavel, nome, categoria, qtde, estoque_min, preco, des
 VALUES ("Viviane", "Alicate", "Ferramenta", 8, 28, 28.00, "Alicate da marca Tramontina", "/static/alicate.jpg");
 
 INSERT INTO usuarios (user, email, tipo, senha)
-VALUES ('Administrador', 'admin@empresa.com', 'admin', '123456');
+VALUES ('Administrador', 'admin@empresa.com', 'admin', '$2a$12$glWRAuHWTu6VOfiVxBmFNON0HiHey93me9JvMPsTEnNrI0GcB3aMW');
 INSERT INTO usuarios (user, email, tipo, senha)
-VALUES ('João', 'joao@empresa.com', 'usuário', '123456');	
+VALUES ('João', 'joao@empresa.com', 'usuário', '$2a$12$Oc1gJWh92oGDc/EO9oKyu.UjP/gCljBFZPZpRln1tqvu8LubErSEW');	
 
 SELECT * FROM estoque;
 SELECT * FROM usuarios;

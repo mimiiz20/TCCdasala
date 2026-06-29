@@ -1,10 +1,26 @@
 from flask import Flask, render_template, request, jsonify, redirect, session, url_for
 import mysql.connector
 import os
+import bcrypt
 from werkzeug.utils import secure_filename
 
 app = Flask(__name__)
-app.secret_key = "chave_secreta_123"
+app.secret_key = "brasil"
+
+import bcrypt
+
+def gerar_hash(senha_texto):
+    senha_bytes = senha_texto.encode('utf-8')
+    salt = bcrypt.gensalt()
+    senha_hash = bcrypt.hashpw(senha_bytes, salt)
+    return senha_hash.decode('utf-8')  
+
+def verificar_senha(senha_digitada, hash_armazenado):
+    if not hash_armazenado:
+        return False
+    senha_bytes = senha_digitada.encode('utf-8')
+    hash_bytes = hash_armazenado.encode('utf-8')
+    return bcrypt.checkpw(senha_bytes, hash_bytes)
 
 # CONEXÃO
 def get_db():
@@ -38,8 +54,8 @@ def login():
 
     cursor.execute("""
         SELECT * FROM usuarios
-        WHERE email = %s AND senha = %s
-    """, (email, senha))
+        WHERE email = %s
+    """, (email,))
 
     user = cursor.fetchone()
     print(user)
@@ -47,7 +63,7 @@ def login():
     cursor.close()
     conexao.close()
 
-    if user:
+    if user and verificar_senha(senha, user[4]):
         session['usuario'] = user[1]
         session['email'] = user[2]
         session['tipo'] = user[3]
@@ -321,13 +337,15 @@ def cadastro():
     senha = request.form.get('senha')
     perfil = request.form.get('perfil')
 
+    senha_criptografada = gerar_hash(senha)
+
     conexao = get_db()
     cursor = conexao.cursor()
 
     cursor.execute("""
         INSERT INTO usuarios (user, email, senha, tipo)
         VALUES (%s, %s, %s, %s)
-    """, (usuario, email, senha, perfil))
+    """, (usuario, email, senha_criptografada, perfil))
 
     conexao.commit()
     cursor.close()
