@@ -54,7 +54,7 @@ body {
   object-fit: cover;
 }
 
-#login-img::after{
+#login-img::before{
   content: "";
   position: absolute;
   top: 0;

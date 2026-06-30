@@ -7,8 +7,7 @@ from werkzeug.utils import secure_filename
 app = Flask(__name__)
 app.secret_key = "brasil"
 
-import bcrypt
-
+# GERAR SENHA BCRYPT
 def gerar_hash(senha_texto):
     senha_bytes = senha_texto.encode('utf-8')
     salt = bcrypt.gensalt()
