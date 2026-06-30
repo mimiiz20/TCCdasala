@@ -34,7 +34,6 @@ VALUES ('João', 'joao@empresa.com', 'usuário', '$2a$12$Oc1gJWh92oGDc/EO9oKyu.U
 
 SELECT * FROM estoque;
 SELECT * FROM usuarios;
-SELECT id, email, senha, LENGTH(senha) AS tamanho FROM usuarios;
 
 DROP TABLE estoque;
 DROP TABLE usuarios;

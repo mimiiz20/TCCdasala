@@ -58,7 +58,6 @@
                     <th>NOME</th>
                     <th>EMAIL</th>
                     <th>TIPO</th>
-                    <th>SENHA</th>
                     <th>EXCLUIR</th>
                 </tr>
 
@@ -69,16 +68,6 @@
                     <td>{{ item[1] }}</td>
                     <td>{{ item[2] }}</td>
                     <td>{{ item[3] }}</td>
-
-                    <td>
-                        <button class="btn btn-info btn-sm"
-                                data-bs-toggle="modal"
-                                data-bs-target="#senha{{item[0]}}">
-                            <span class="material-symbols-outlined">
-                                password
-                            </span>
-                        </button>
-                    </td>
 
                     <td>
                         <button class="btn btn-danger btn-sm"
