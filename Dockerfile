@@ -1,0 +1,15 @@
+# Usa uma imagem oficial do Python
+FROM python:latest
+
+# Define a pasta de trabalho dentro do container
+WORKDIR /app
+
+RUN pip install Flask && pip install bcrypt && pip install mysql-connector-python
+# Copia o código da aplicação
+COPY . .
+
+# Expõe a porta da aplicação
+EXPOSE 5000
+
+# Comando para rodar a aplicação
+CMD ["python", "app.py"]
