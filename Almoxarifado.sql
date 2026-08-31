@@ -32,12 +32,4 @@ VALUES ('Administrador', 'admin@empresa.com', 'admin', '$2a$12$glWRAuHWTu6VOfiVx
 INSERT INTO usuarios (user, email, tipo, senha)
 VALUES ('João', 'joao@empresa.com', 'usuário', '$2a$12$Oc1gJWh92oGDc/EO9oKyu.UjP/gCljBFZPZpRln1tqvu8LubErSEW');	
 
-SELECT * FROM estoque;
-SELECT * FROM usuarios;
 
-DROP TABLE estoque;
-DROP TABLE usuarios;
-
-
-TRUNCATE TABLE estoque;
-TRUNCATE TABLE usuarios;

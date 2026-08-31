@@ -24,7 +24,7 @@ def verificar_senha(senha_digitada, hash_armazenado):
 # CONEXÃO
 def get_db():
     return mysql.connector.connect(
-        host='127.0.0.1',
+        host="almoxarifado-mysql", # Mudei pra rodar no Docker, mas era 127.0.0.1
         user='root',
         password='',
         database='almoxarifado',
