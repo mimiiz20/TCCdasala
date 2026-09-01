@@ -1,0 +1,5 @@
+cd ".\app expo\"
+npx.cmd create-expo-app@latest App-Almox --template blank
+For learning with Expo Go (SDK 54)
+cd ".\App-Almox\"
+npx.cmd expo start
