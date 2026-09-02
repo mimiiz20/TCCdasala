@@ -2,4 +2,5 @@ cd ".\app expo\"
 npx.cmd create-expo-app@latest App-Almox --template blank
 For learning with Expo Go (SDK 54)
 cd ".\App-Almox\"
+npm.cmd install (Para sempre colocar o node_modules)
 npx.cmd expo start
