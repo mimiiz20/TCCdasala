@@ -40,7 +40,9 @@ export default function Login() {
         start={{ x: 0, y: 0 }}
         end={{ x: 0, y: 1 }}
         style={styles.gradient}
-      >
+      />
+
+      <View style={styles.content}>
 
         <Text style={styles.paragraph1}>
           BOAS-VINDAS
@@ -98,7 +100,8 @@ export default function Login() {
 
         </View>
 
-      </LinearGradient>
+      </View>
+
     </View>
   );
 }
@@ -115,9 +118,19 @@ const styles = StyleSheet.create({
   },
 
   gradient: {
-    ...StyleSheet.absoluteFillObject,
-    justifyContent: 'center',
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+  },
+
+  content: {
+    flex: 1,
+    width: '100%',
     alignItems: 'center',
+    paddingTop: 100,
+    paddingBottom: 60,
   },
 
   paragraph1: {

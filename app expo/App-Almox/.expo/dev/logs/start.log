@@ -343,3 +343,204 @@
 {"_e":"metro:client_log","_t":1788950757660,"level":"warn","data":["Linking requires a build-time setting `scheme` in the project's Expo config (app.config.js or app.json) for production apps, if it's left blank, your app may crash. The scheme does not apply to development in the Expo client but you should add it as soon as you start working with Linking to avoid creating a broken build. Learn more: https://docs.expo.dev/guides/linking/"]}
 {"_e":"metro:client_log","_t":1788950758584,"level":"error","data":["[Error: Element type is invalid: expected a string (for built-in components) or a class/function (for composite components) but got: undefined. You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.\n\nCheck the render method of `WrappedScreenComponent`.]"]}
 {"_e":"metro:client_log","_t":1788951002547,"level":"warn","data":["Route \"./editor.js\" is missing the required default export. Ensure a React component is exported as default."]}
+{"_e":"root:init","_t":1788953909180,"format":"v0-jsonl","version":"57.0.23"}
+{"_e":"env:mode","_t":1788953909181,"nodeEnv":"development","babelEnv":"development","mode":"development"}
+{"_e":"env:load","_t":1788953909184,"mode":"development","files":[],"env":{}}
+{"_e":"devserver:start","_t":1788953909789,"mode":"development","web":true,"baseUrl":"","asyncRoutes":false,"routerRoot":"../..\\..\\app","serverComponents":false,"serverActions":false,"serverRendering":false,"apiRoutes":false,"exporting":false}
+{"_e":"metro:config","_t":1788953910479,"serverRoot":"../..\\..","projectRoot":"../..\\..","exporting":false,"flags":{"autolinkingModuleResolution":false,"serverActions":false,"serverComponents":false,"reactCompiler":false,"optimizeGraph":false,"treeshaking":false,"logbox":false}}
+{"_e":"expo:dev-tools-plugin:load","_t":1788953910972,"plugins":[]}
+{"_e":"metro:instantiate","_t":1788953919446,"atlas":false,"workers":3,"host":"::","port":8081}
+{"_e":"metro:bundling:started","_t":1788953928292,"id":"3","platform":"android","environment":null,"entry":"index.js"}
+{"_e":"metro:bundling:progress","_t":1788953928293,"id":"3","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:progress","_t":1788953928297,"id":"3","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:progress","_t":1788953928397,"id":"3","progress":0.03681043807463494,"total":172,"current":33}
+{"_e":"metro:bundling:progress","_t":1788953928499,"id":"3","progress":0.07830784602618164,"total":243,"current":68}
+{"_e":"metro:bundling:progress","_t":1788953928598,"id":"3","progress":0.23599722365702477,"total":352,"current":171}
+{"_e":"metro:bundling:progress","_t":1788953928698,"id":"3","progress":0.23599722365702477,"total":517,"current":216}
+{"_e":"metro:bundling:progress","_t":1788953928801,"id":"3","progress":0.28843887110026756,"total":661,"current":355}
+{"_e":"metro:bundling:progress","_t":1788953928901,"id":"3","progress":0.3845806037326798,"total":824,"current":511}
+{"_e":"metro:bundling:progress","_t":1788953929001,"id":"3","progress":0.4564559153992062,"total":894,"current":604}
+{"_e":"metro:bundling:progress","_t":1788953929101,"id":"3","progress":0.6482314266929652,"total":975,"current":785}
+{"_e":"metro:bundling:progress","_t":1788953929201,"id":"3","progress":0.6521380435409311,"total":1086,"current":877}
+{"_e":"metro:bundling:progress","_t":1788953929329,"id":"3","progress":0.7171622132801193,"total":1208,"current":1023}
+{"_e":"metro:bundling:progress","_t":1788953929429,"id":"3","progress":0.7306240716285095,"total":1322,"current":1130}
+{"_e":"metro:bundling:progress","_t":1788953929529,"id":"3","progress":0.8531041322314049,"total":1375,"current":1270}
+{"_e":"metro:bundling:progress","_t":1788953929629,"id":"3","progress":0.9667383058862827,"total":1431,"current":1407}
+{"_e":"metro:bundling:done","_t":1788953929745,"id":"3","total":1431,"ms":1452.5485}
+{"_e":"metro:client_log","_t":1788953943440,"level":"warn","data":["Route \"./editor.js\" is missing the required default export. Ensure a React component is exported as default."]}
+{"_e":"metro:client_log","_t":1788953943442,"level":"warn","data":["Linking requires a build-time setting `scheme` in the project's Expo config (app.config.js or app.json) for production apps, if it's left blank, your app may crash. The scheme does not apply to development in the Expo client but you should add it as soon as you start working with Linking to avoid creating a broken build. Learn more: https://docs.expo.dev/guides/linking/"]}
+{"_e":"root:init","_t":1788954038537,"format":"v0-jsonl","version":"57.0.23"}
+{"_e":"env:mode","_t":1788954038539,"nodeEnv":"development","babelEnv":"development","mode":"development"}
+{"_e":"env:load","_t":1788954038542,"mode":"development","files":[],"env":{}}
+{"_e":"devserver:start","_t":1788954038960,"mode":"development","web":true,"baseUrl":"","asyncRoutes":false,"routerRoot":"../..\\..\\app","serverComponents":false,"serverActions":false,"serverRendering":false,"apiRoutes":false,"exporting":false}
+{"_e":"metro:config","_t":1788954039443,"serverRoot":"../..\\..","projectRoot":"../..\\..","exporting":false,"flags":{"autolinkingModuleResolution":false,"serverActions":false,"serverComponents":false,"reactCompiler":false,"optimizeGraph":false,"treeshaking":false,"logbox":false}}
+{"_e":"expo:dev-tools-plugin:load","_t":1788954039846,"plugins":[]}
+{"_e":"metro:instantiate","_t":1788954048189,"atlas":false,"workers":3,"host":"::","port":8081}
+{"_e":"root:init","_t":1788954275494,"format":"v0-jsonl","version":"57.0.23"}
+{"_e":"env:mode","_t":1788954275495,"nodeEnv":"development","babelEnv":"development","mode":"development"}
+{"_e":"env:load","_t":1788954275499,"mode":"development","files":[],"env":{}}
+{"_e":"devserver:start","_t":1788954275912,"mode":"development","web":true,"baseUrl":"","asyncRoutes":false,"routerRoot":"../..\\..\\app","serverComponents":false,"serverActions":false,"serverRendering":false,"apiRoutes":false,"exporting":false}
+{"_e":"metro:config","_t":1788954276394,"serverRoot":"../..\\..","projectRoot":"../..\\..","exporting":false,"flags":{"autolinkingModuleResolution":false,"serverActions":false,"serverComponents":false,"reactCompiler":false,"optimizeGraph":false,"treeshaking":false,"logbox":false}}
+{"_e":"expo:dev-tools-plugin:load","_t":1788954276794,"plugins":[]}
+{"_e":"metro:instantiate","_t":1788954284991,"atlas":false,"workers":3,"host":"::","port":8081}
+{"_e":"root:init","_t":1788954293028,"format":"v0-jsonl","version":"57.0.23"}
+{"_e":"env:mode","_t":1788954293029,"nodeEnv":"development","babelEnv":"development","mode":"development"}
+{"_e":"env:load","_t":1788954293032,"mode":"development","files":[],"env":{}}
+{"_e":"devserver:start","_t":1788954293447,"mode":"development","web":true,"baseUrl":"","asyncRoutes":false,"routerRoot":"../..\\..\\app","serverComponents":false,"serverActions":false,"serverRendering":false,"apiRoutes":false,"exporting":false}
+{"_e":"metro:config","_t":1788954293929,"serverRoot":"../..\\..","projectRoot":"../..\\..","exporting":false,"flags":{"autolinkingModuleResolution":false,"serverActions":false,"serverComponents":false,"reactCompiler":false,"optimizeGraph":false,"treeshaking":false,"logbox":false}}
+{"_e":"expo:dev-tools-plugin:load","_t":1788954294349,"plugins":[]}
+{"_e":"metro:instantiate","_t":1788954302922,"atlas":false,"workers":3,"host":"::","port":8081}
+{"_e":"metro:bundling:started","_t":1788954311319,"id":"1","platform":"android","environment":null,"entry":"index.js"}
+{"_e":"metro:bundling:progress","_t":1788954311319,"id":"1","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:progress","_t":1788954311323,"id":"1","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:progress","_t":1788954312376,"id":"1","progress":0.010000000000000002,"total":1,"current":1}
+{"_e":"metro:bundling:progress","_t":1788954312476,"id":"1","progress":0.04000000000000001,"total":6,"current":2}
+{"_e":"metro:bundling:progress","_t":1788954312606,"id":"1","progress":0.19140625,"total":16,"current":7}
+{"_e":"metro:bundling:progress","_t":1788954312723,"id":"1","progress":0.19140625,"total":24,"current":8}
+{"_e":"metro:bundling:progress","_t":1788954312736,"id":"1","progress":0.19140625,"total":24,"current":9}
+{"_e":"metro:bundling:progress","_t":1788954312836,"id":"1","progress":0.19140625,"total":53,"current":12}
+{"_e":"metro:bundling:progress","_t":1788954312958,"id":"1","progress":0.19140625,"total":62,"current":14}
+{"_e":"metro:bundling:progress","_t":1788954313071,"id":"1","progress":0.19140625,"total":62,"current":15}
+{"_e":"metro:bundling:progress","_t":1788954313180,"id":"1","progress":0.19140625,"total":165,"current":18}
+{"_e":"metro:bundling:progress","_t":1788954313290,"id":"1","progress":0.19140625,"total":225,"current":21}
+{"_e":"metro:bundling:progress","_t":1788954313371,"id":"1","progress":0.19140625,"total":225,"current":22}
+{"_e":"metro:bundling:progress","_t":1788954313473,"id":"1","progress":0.19140625,"total":252,"current":25}
+{"_e":"metro:bundling:progress","_t":1788954313577,"id":"1","progress":0.19140625,"total":269,"current":29}
+{"_e":"metro:bundling:progress","_t":1788954313683,"id":"1","progress":0.19140625,"total":289,"current":34}
+{"_e":"metro:bundling:progress","_t":1788954313785,"id":"1","progress":0.19140625,"total":316,"current":47}
+{"_e":"metro:bundling:progress","_t":1788954313887,"id":"1","progress":0.19140625,"total":336,"current":63}
+{"_e":"metro:bundling:progress","_t":1788954313993,"id":"1","progress":0.19140625,"total":337,"current":66}
+{"_e":"metro:bundling:progress","_t":1788954314093,"id":"1","progress":0.19140625,"total":351,"current":74}
+{"_e":"metro:bundling:progress","_t":1788954314206,"id":"1","progress":0.19140625,"total":366,"current":81}
+{"_e":"metro:bundling:progress","_t":1788954314308,"id":"1","progress":0.19140625,"total":381,"current":87}
+{"_e":"metro:bundling:progress","_t":1788954314408,"id":"1","progress":0.19140625,"total":387,"current":96}
+{"_e":"metro:bundling:progress","_t":1788954314508,"id":"1","progress":0.19140625,"total":407,"current":111}
+{"_e":"metro:bundling:progress","_t":1788954314608,"id":"1","progress":0.19140625,"total":418,"current":125}
+{"_e":"metro:bundling:progress","_t":1788954314709,"id":"1","progress":0.19140625,"total":434,"current":140}
+{"_e":"metro:bundling:progress","_t":1788954314810,"id":"1","progress":0.19140625,"total":445,"current":158}
+{"_e":"metro:bundling:progress","_t":1788954314911,"id":"1","progress":0.19140625,"total":448,"current":170}
+{"_e":"metro:bundling:progress","_t":1788954315013,"id":"1","progress":0.19140625,"total":448,"current":193}
+{"_e":"metro:bundling:progress","_t":1788954315114,"id":"1","progress":0.2522371253188776,"total":448,"current":225}
+{"_e":"metro:bundling:progress","_t":1788954315217,"id":"1","progress":0.2522371253188776,"total":487,"current":242}
+{"_e":"metro:bundling:progress","_t":1788954315317,"id":"1","progress":0.2522371253188776,"total":499,"current":249}
+{"_e":"metro:bundling:progress","_t":1788954315417,"id":"1","progress":0.2522371253188776,"total":528,"current":265}
+{"_e":"metro:bundling:progress","_t":1788954315517,"id":"1","progress":0.2522371253188776,"total":568,"current":278}
+{"_e":"metro:bundling:progress","_t":1788954315619,"id":"1","progress":0.25794301943620584,"total":571,"current":290}
+{"_e":"metro:bundling:progress","_t":1788954315719,"id":"1","progress":0.25794301943620584,"total":610,"current":308}
+{"_e":"metro:bundling:progress","_t":1788954315821,"id":"1","progress":0.2774574521459774,"total":617,"current":325}
+{"_e":"metro:bundling:progress","_t":1788954315922,"id":"1","progress":0.2774574521459774,"total":644,"current":336}
+{"_e":"metro:bundling:progress","_t":1788954316024,"id":"1","progress":0.2901922948505691,"total":659,"current":355}
+{"_e":"metro:bundling:progress","_t":1788954316126,"id":"1","progress":0.3007284079084287,"total":682,"current":374}
+{"_e":"metro:bundling:progress","_t":1788954316226,"id":"1","progress":0.30461606324449775,"total":703,"current":388}
+{"_e":"metro:bundling:progress","_t":1788954316328,"id":"1","progress":0.31640625,"total":720,"current":405}
+{"_e":"metro:bundling:progress","_t":1788954316430,"id":"1","progress":0.3280726673011676,"total":742,"current":425}
+{"_e":"metro:bundling:progress","_t":1788954316529,"id":"1","progress":0.33325073423040613,"total":757,"current":437}
+{"_e":"metro:bundling:progress","_t":1788954316629,"id":"1","progress":0.3578466188013005,"total":779,"current":466}
+{"_e":"metro:bundling:progress","_t":1788954316730,"id":"1","progress":0.3984664593310064,"total":781,"current":493}
+{"_e":"metro:bundling:progress","_t":1788954316830,"id":"1","progress":0.4059832406609758,"total":791,"current":504}
+{"_e":"metro:bundling:progress","_t":1788954316930,"id":"1","progress":0.42896747369763344,"total":797,"current":522}
+{"_e":"metro:bundling:progress","_t":1788954317033,"id":"1","progress":0.42896747369763344,"total":831,"current":542}
+{"_e":"metro:bundling:progress","_t":1788954317133,"id":"1","progress":0.4583743504040659,"total":836,"current":566}
+{"_e":"metro:bundling:progress","_t":1788954317235,"id":"1","progress":0.481196043305996,"total":839,"current":582}
+{"_e":"metro:bundling:progress","_t":1788954317334,"id":"1","progress":0.481196043305996,"total":859,"current":593}
+{"_e":"metro:bundling:progress","_t":1788954317437,"id":"1","progress":0.489837788629763,"total":863,"current":604}
+{"_e":"metro:bundling:progress","_t":1788954317538,"id":"1","progress":0.4919022952028009,"total":884,"current":620}
+{"_e":"metro:bundling:progress","_t":1788954317640,"id":"1","progress":0.5031832679401391,"total":898,"current":637}
+{"_e":"metro:bundling:progress","_t":1788954317742,"id":"1","progress":0.5169991776959824,"total":904,"current":650}
+{"_e":"metro:bundling:progress","_t":1788954317842,"id":"1","progress":0.5169991776959824,"total":917,"current":658}
+{"_e":"metro:bundling:progress","_t":1788954317950,"id":"1","progress":0.519884322790989,"total":932,"current":672}
+{"_e":"metro:bundling:progress","_t":1788954318050,"id":"1","progress":0.5379862793858912,"total":938,"current":688}
+{"_e":"metro:bundling:progress","_t":1788954318150,"id":"1","progress":0.5577229515617927,"total":940,"current":702}
+{"_e":"metro:bundling:progress","_t":1788954318250,"id":"1","progress":0.5920897506925208,"total":950,"current":731}
+{"_e":"metro:bundling:progress","_t":1788954318353,"id":"1","progress":0.6169929046960364,"total":951,"current":747}
+{"_e":"metro:bundling:progress","_t":1788954318453,"id":"1","progress":0.6410024799403768,"total":958,"current":767}
+{"_e":"metro:bundling:progress","_t":1788954318553,"id":"1","progress":0.657233822757371,"total":972,"current":788}
+{"_e":"metro:bundling:progress","_t":1788954318653,"id":"1","progress":0.6655124653739611,"total":988,"current":806}
+{"_e":"metro:bundling:progress","_t":1788954318753,"id":"1","progress":0.6655124653739611,"total":1010,"current":821}
+{"_e":"metro:bundling:progress","_t":1788954318854,"id":"1","progress":0.6655124653739611,"total":1033,"current":841}
+{"_e":"metro:bundling:progress","_t":1788954318955,"id":"1","progress":0.6655124653739611,"total":1063,"current":858}
+{"_e":"metro:bundling:progress","_t":1788954319055,"id":"1","progress":0.6655124653739611,"total":1068,"current":870}
+{"_e":"metro:bundling:progress","_t":1788954319155,"id":"1","progress":0.6826199541189314,"total":1076,"current":889}
+{"_e":"metro:bundling:progress","_t":1788954319262,"id":"1","progress":0.6934235780709344,"total":1088,"current":906}
+{"_e":"metro:bundling:progress","_t":1788954319363,"id":"1","progress":0.7086578512396694,"total":1100,"current":926}
+{"_e":"metro:bundling:progress","_t":1788954319462,"id":"1","progress":0.7217344371398425,"total":1110,"current":943}
+{"_e":"metro:bundling:progress","_t":1788954319562,"id":"1","progress":0.7371075644651832,"total":1117,"current":959}
+{"_e":"metro:bundling:progress","_t":1788954319663,"id":"1","progress":0.7524482022770734,"total":1124,"current":975}
+{"_e":"metro:bundling:progress","_t":1788954319764,"id":"1","progress":0.760026298487837,"total":1131,"current":986}
+{"_e":"metro:bundling:progress","_t":1788954319863,"id":"1","progress":0.7788218419508298,"total":1132,"current":999}
+{"_e":"metro:bundling:progress","_t":1788954319963,"id":"1","progress":0.7904712606625669,"total":1136,"current":1010}
+{"_e":"metro:bundling:progress","_t":1788954320063,"id":"1","progress":0.8035335896050398,"total":1139,"current":1021}
+{"_e":"metro:bundling:progress","_t":1788954320164,"id":"1","progress":0.8158168574401664,"total":1147,"current":1036}
+{"_e":"metro:bundling:progress","_t":1788954320264,"id":"1","progress":0.8322004587858857,"total":1151,"current":1050}
+{"_e":"metro:bundling:progress","_t":1788954320368,"id":"1","progress":0.8577559950513323,"total":1151,"current":1066}
+{"_e":"metro:bundling:progress","_t":1788954320479,"id":"1","progress":0.8651086407088315,"total":1159,"current":1078}
+{"_e":"metro:bundling:progress","_t":1788954320581,"id":"1","progress":0.8651086407088315,"total":1214,"current":1083}
+{"_e":"metro:bundling:progress","_t":1788954320709,"id":"1","progress":0.8651086407088315,"total":1216,"current":1091}
+{"_e":"metro:bundling:progress","_t":1788954320810,"id":"1","progress":0.8651086407088315,"total":1228,"current":1103}
+{"_e":"metro:bundling:progress","_t":1788954320911,"id":"1","progress":0.8651086407088315,"total":1235,"current":1110}
+{"_e":"metro:bundling:progress","_t":1788954321035,"id":"1","progress":0.8651086407088315,"total":1236,"current":1114}
+{"_e":"metro:bundling:progress","_t":1788954321136,"id":"1","progress":0.8651086407088315,"total":1241,"current":1129}
+{"_e":"metro:bundling:progress","_t":1788954321239,"id":"1","progress":0.8651086407088315,"total":1271,"current":1144}
+{"_e":"metro:bundling:progress","_t":1788954321340,"id":"1","progress":0.8651086407088315,"total":1281,"current":1159}
+{"_e":"metro:bundling:progress","_t":1788954321440,"id":"1","progress":0.8651086407088315,"total":1291,"current":1178}
+{"_e":"metro:bundling:progress","_t":1788954321540,"id":"1","progress":0.8651086407088315,"total":1295,"current":1201}
+{"_e":"metro:bundling:progress","_t":1788954321644,"id":"1","progress":0.8794463675168298,"total":1302,"current":1221}
+{"_e":"metro:bundling:progress","_t":1788954321744,"id":"1","progress":0.8904574270186993,"total":1313,"current":1239}
+{"_e":"metro:bundling:progress","_t":1788954321844,"id":"1","progress":0.8904574270186993,"total":1348,"current":1267}
+{"_e":"metro:bundling:progress","_t":1788954321948,"id":"1","progress":0.8904574270186993,"total":1372,"current":1282}
+{"_e":"metro:bundling:progress","_t":1788954322052,"id":"1","progress":0.891442706588678,"total":1379,"current":1302}
+{"_e":"metro:bundling:progress","_t":1788954322153,"id":"1","progress":0.9149338374291116,"total":1380,"current":1320}
+{"_e":"metro:bundling:progress","_t":1788954322254,"id":"1","progress":0.9149338374291116,"total":1398,"current":1334}
+{"_e":"metro:bundling:progress","_t":1788954322360,"id":"1","progress":0.925926433227003,"total":1404,"current":1351}
+{"_e":"metro:bundling:progress","_t":1788954322462,"id":"1","progress":0.9316565262046028,"total":1409,"current":1360}
+{"_e":"metro:bundling:progress","_t":1788954322566,"id":"1","progress":0.9455601083659018,"total":1413,"current":1374}
+{"_e":"metro:bundling:progress","_t":1788954322669,"id":"1","progress":0.9581052538262822,"total":1417,"current":1387}
+{"_e":"metro:bundling:progress","_t":1788954322770,"id":"1","progress":0.9652442418794221,"total":1426,"current":1401}
+{"_e":"metro:bundling:progress","_t":1788954322869,"id":"1","progress":0.975018335882151,"total":1432,"current":1414}
+{"_e":"metro:bundling:progress","_t":1788954322970,"id":"1","progress":0.9972125449095391,"total":1434,"current":1432}
+{"_e":"metro:bundling:progress","_t":1788954323084,"id":"1","progress":0.9986067573965933,"total":1435,"current":1434}
+{"_e":"metro:bundling:progress","_t":1788954323726,"id":"1","progress":0.999,"total":1435,"current":1435}
+{"_e":"metro:bundling:progress","_t":1788954323826,"id":"1","progress":0.999,"total":1446,"current":1446}
+{"_e":"metro:bundling:done","_t":1788954324170,"id":"1","total":1446,"ms":12850.5955}
+{"_e":"metro:client_log","_t":1788954331764,"level":"warn","data":["Route \"./editor.js\" is missing the required default export. Ensure a React component is exported as default."]}
+{"_e":"root:init","_t":1788955108919,"format":"v0-jsonl","version":"57.0.23"}
+{"_e":"env:mode","_t":1788955108920,"nodeEnv":"development","babelEnv":"development","mode":"development"}
+{"_e":"env:load","_t":1788955108924,"mode":"development","files":[],"env":{}}
+{"_e":"root:init","_t":1788955182598,"format":"v0-jsonl","version":"57.0.23"}
+{"_e":"env:mode","_t":1788955182599,"nodeEnv":"development","babelEnv":"development","mode":"development"}
+{"_e":"env:load","_t":1788955182602,"mode":"development","files":[],"env":{}}
+{"_e":"devserver:start","_t":1788955183121,"mode":"development","web":true,"baseUrl":"","asyncRoutes":false,"routerRoot":"../..\\..\\app","serverComponents":false,"serverActions":false,"serverRendering":false,"apiRoutes":false,"exporting":false}
+{"_e":"metro:config","_t":1788955183873,"serverRoot":"../..\\..","projectRoot":"../..\\..","exporting":false,"flags":{"autolinkingModuleResolution":false,"serverActions":false,"serverComponents":false,"reactCompiler":false,"optimizeGraph":false,"treeshaking":false,"logbox":false}}
+{"_e":"expo:dev-tools-plugin:load","_t":1788955184371,"plugins":[]}
+{"_e":"metro:instantiate","_t":1788955193895,"atlas":false,"workers":3,"host":"::","port":8081}
+{"_e":"metro:bundling:started","_t":1788955238140,"id":"2","platform":"android","environment":null,"entry":"index.js"}
+{"_e":"metro:bundling:progress","_t":1788955238142,"id":"2","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:done","_t":1788955239375,"id":"2","total":1,"ms":1233.7841}
+{"_e":"metro:client_log","_t":1788955247446,"level":"warn","data":["Route \"./editor.js\" is missing the required default export. Ensure a React component is exported as default."]}
+{"_e":"metro:bundling:failed","_t":1788955317864,"id":null,"message":"SyntaxError: C:\\Users\\Aluno\\TCCdasala\\app expo\\App-Almox\\app\\login.js: Expected corresponding JSX closing tag for <View>. (101:6)\n\n   99 |         </View>\n  100 |\n> 101 |       </LinearGradient>\n      |       ^\n  102 |     </View>\n  103 |   );\n  104 | }","importStack":null,"filename":"app\\login.js","targetModuleName":null,"originModulePath":null}
+{"_e":"metro:bundling:failed","_t":1788955318040,"id":null,"message":"SyntaxError: C:\\Users\\Aluno\\TCCdasala\\app expo\\App-Almox\\app\\login.js: Expected corresponding JSX closing tag for <View>. (101:6)\n\n   99 |         </View>\n  100 |\n> 101 |       </LinearGradient>\n      |       ^\n  102 |     </View>\n  103 |   );\n  104 | }","importStack":null,"filename":"app\\login.js","targetModuleName":null,"originModulePath":null}
+{"_e":"metro:bundling:failed","_t":1788955320013,"id":null,"message":"SyntaxError: C:\\Users\\Aluno\\TCCdasala\\app expo\\App-Almox\\app\\login.js: Expected corresponding JSX closing tag for <View>. (101:6)\n\n   99 |         </View>\n  100 |\n> 101 |       </LinearGradient>\n      |       ^\n  102 |     </View>\n  103 |   );\n  104 | }","importStack":null,"filename":"app\\login.js","targetModuleName":null,"originModulePath":null}
+{"_e":"metro:client_log","_t":1788955686870,"level":"warn","data":["Route \"./cadastro.js\" is missing the required default export. Ensure a React component is exported as default."]}
+{"_e":"metro:client_log","_t":1788955686917,"level":"warn","data":["Route \"./editor.js\" is missing the required default export. Ensure a React component is exported as default."]}
+{"_e":"metro:bundling:failed","_t":1788955689727,"id":null,"message":"SyntaxError: C:\\Users\\Aluno\\TCCdasala\\app expo\\App-Almox\\app\\cadastro.js: Unexpected token (131:8)\n\n  129 |           </TouchableOpacity>\n  130 |         </View>\n> 131 |       )}\n      |         ^","importStack":null,"filename":"app\\cadastro.js","targetModuleName":null,"originModulePath":null}
+{"_e":"metro:bundling:failed","_t":1788955695750,"id":null,"message":"SyntaxError: C:\\Users\\Aluno\\TCCdasala\\app expo\\App-Almox\\app\\cadastro.js: Unexpected token (131:8)\n\n  129 |           </TouchableOpacity>\n  130 |         </View>\n> 131 |       )}\n      |         ^","importStack":null,"filename":"app\\cadastro.js","targetModuleName":null,"originModulePath":null}
+{"_e":"metro:bundling:failed","_t":1788955713848,"id":null,"message":"SyntaxError: C:\\Users\\Aluno\\TCCdasala\\app expo\\App-Almox\\app\\cadastro.js: Unexpected token (131:8)\n\n  129 |           </TouchableOpacity>\n  130 |         </View>\n> 131 |       )}\n      |         ^","importStack":null,"filename":"app\\cadastro.js","targetModuleName":null,"originModulePath":null}
+{"_e":"metro:client_log","_t":1788955717683,"level":"warn","data":["Route \"./editor.js\" is missing the required default export. Ensure a React component is exported as default."]}
+{"_e":"metro:bundling:started","_t":1788955722602,"id":"7","platform":"android","environment":null,"entry":"index.js"}
+{"_e":"metro:bundling:progress","_t":1788955722602,"id":"7","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:done","_t":1788955722653,"id":"7","total":1,"ms":51.3591}
+{"_e":"metro:client_log","_t":1788955733018,"level":"warn","data":["Route \"./editor.js\" is missing the required default export. Ensure a React component is exported as default."]}
+{"_e":"metro:bundling:failed","_t":1788955788511,"id":null,"message":"SyntaxError: C:\\Users\\Aluno\\TCCdasala\\app expo\\App-Almox\\app\\cadastro.js: Adjacent JSX elements must be wrapped in an enclosing tag. Did you want a JSX fragment <>...</>? (19:8)\n\n  17 |\n  18 |           </View>\n> 19 |         </View>\n     |         ^\n  20 |       </Modal>\n  21 |\n  22 |       {/* NAVBAR */}","importStack":null,"filename":"app\\cadastro.js","targetModuleName":null,"originModulePath":null}
+{"_e":"metro:client_log","_t":1788955796333,"level":"error","data":["[ReferenceError: Property 'menuAberto' doesn't exist]"]}
+{"_e":"metro:bundling:failed","_t":1788955887073,"id":null,"message":"SyntaxError: C:\\Users\\Aluno\\TCCdasala\\app expo\\App-Almox\\app\\cadastro.js: Unexpected token, expected \"}\" (105:12)\n\n  103 |\n  104 | const styles = StyleSheet.create({\n> 105 |   background: {\n      |             ^\n  106 |     flex: 1,\n  107 |     backgroundColor: '#F0F1F2',\n  108 |   },","importStack":null,"filename":"app\\cadastro.js","targetModuleName":null,"originModulePath":null}
+{"_e":"metro:bundling:failed","_t":1788955902557,"id":null,"message":"SyntaxError: C:\\Users\\Aluno\\TCCdasala\\app expo\\App-Almox\\app\\cadastro.js: Unexpected token, expected \"}\" (105:12)\n\n  103 |\n  104 | const styles = StyleSheet.create({\n> 105 |   background: {\n      |             ^\n  106 |     flex: 1,\n  107 |     backgroundColor: '#F0F1F2',\n  108 |   },","importStack":null,"filename":"app\\cadastro.js","targetModuleName":null,"originModulePath":null}
+{"_e":"metro:bundling:failed","_t":1788955904962,"id":null,"message":"SyntaxError: C:\\Users\\Aluno\\TCCdasala\\app expo\\App-Almox\\app\\cadastro.js: Unexpected token, expected \"}\" (105:12)\n\n  103 |\n  104 | const styles = StyleSheet.create({\n> 105 |   background: {\n      |             ^\n  106 |     flex: 1,\n  107 |     backgroundColor: '#F0F1F2',\n  108 |   },","importStack":null,"filename":"app\\cadastro.js","targetModuleName":null,"originModulePath":null}
+{"_e":"metro:bundling:failed","_t":1788955915314,"id":null,"message":"SyntaxError: C:\\Users\\Aluno\\TCCdasala\\app expo\\App-Almox\\app\\cadastro.js: Unexpected token, expected \"}\" (105:12)\n\n  103 |\n  104 | const styles = StyleSheet.create({\n> 105 |   background: {\n      |             ^\n  106 |     flex: 1,\n  107 |     backgroundColor: '#F0F1F2',\n  108 |   },","importStack":null,"filename":"app\\cadastro.js","targetModuleName":null,"originModulePath":null}
+{"_e":"metro:bundling:failed","_t":1788955916839,"id":null,"message":"SyntaxError: C:\\Users\\Aluno\\TCCdasala\\app expo\\App-Almox\\app\\cadastro.js: Unexpected token, expected \"}\" (105:12)\n\n  103 |\n  104 | const styles = StyleSheet.create({\n> 105 |   background: {\n      |             ^\n  106 |     flex: 1,\n  107 |     backgroundColor: '#F0F1F2',\n  108 |   },","importStack":null,"filename":"app\\cadastro.js","targetModuleName":null,"originModulePath":null}
+{"_e":"metro:bundling:failed","_t":1788955920926,"id":null,"message":"SyntaxError: C:\\Users\\Aluno\\TCCdasala\\app expo\\App-Almox\\app\\cadastro.js: Unexpected token, expected \"}\" (105:12)\n\n  103 |\n  104 | const styles = StyleSheet.create({\n> 105 |   background: {\n      |             ^\n  106 |     flex: 1,\n  107 |     backgroundColor: '#F0F1F2',\n  108 |   },","importStack":null,"filename":"app\\cadastro.js","targetModuleName":null,"originModulePath":null}
+{"_e":"metro:bundling:failed","_t":1788955937767,"id":null,"message":"SyntaxError: C:\\Users\\Aluno\\TCCdasala\\app expo\\App-Almox\\app\\cadastro.js: Unexpected token, expected \"}\" (105:12)\n\n  103 |\n  104 | const styles = StyleSheet.create({\n> 105 |   background: {\n      |             ^\n  106 |     flex: 1,\n  107 |     backgroundColor: '#F0F1F2',\n  108 |   },","importStack":null,"filename":"app\\cadastro.js","targetModuleName":null,"originModulePath":null}
+{"_e":"metro:bundling:failed","_t":1788955994056,"id":null,"message":"SyntaxError: C:\\Users\\Aluno\\TCCdasala\\app expo\\App-Almox\\app\\cadastro.js: Unexpected token, expected \"}\" (105:12)\n\n  103 |\n  104 | const styles = StyleSheet.create({\n> 105 |   background: {\n      |             ^\n  106 |     flex: 1,\n  107 |     backgroundColor: '#F0F1F2',\n  108 |   },","importStack":null,"filename":"app\\cadastro.js","targetModuleName":null,"originModulePath":null}
+{"_e":"metro:bundling:failed","_t":1788956006703,"id":null,"message":"SyntaxError: C:\\Users\\Aluno\\TCCdasala\\app expo\\App-Almox\\app\\cadastro.js: Unexpected token, expected \"}\" (107:12)\n\n  105 |\n  106 | const styles = StyleSheet.create({\n> 107 |   background: {\n      |             ^\n  108 |     flex: 1,\n  109 |     backgroundColor: '#F0F1F2',\n  110 |   },","importStack":null,"filename":"app\\cadastro.js","targetModuleName":null,"originModulePath":null}
+{"_e":"metro:bundling:failed","_t":1788956030648,"id":null,"message":"SyntaxError: C:\\Users\\Aluno\\TCCdasala\\app expo\\App-Almox\\app\\cadastro.js: Unexpected token, expected \"}\" (138:12)\n\n  136 |\n  137 | const styles = StyleSheet.create({\n> 138 |   background: {\n      |             ^\n  139 |     flex: 1,\n  140 |     backgroundColor: '#F0F1F2',\n  141 |   },","importStack":null,"filename":"app\\cadastro.js","targetModuleName":null,"originModulePath":null}
+{"_e":"metro:bundling:failed","_t":1788956063182,"id":null,"message":"SyntaxError: C:\\Users\\Aluno\\TCCdasala\\app expo\\App-Almox\\app\\cadastro.js: Unexpected token, expected \"}\" (138:12)\n\n  136 |\n  137 | const styles = StyleSheet.create({\n> 138 |   background: {\n      |             ^\n  139 |     flex: 1,\n  140 |     backgroundColor: '#F0F1F2',\n  141 |   },","importStack":null,"filename":"app\\cadastro.js","targetModuleName":null,"originModulePath":null}
+{"_e":"metro:bundling:failed","_t":1788956180416,"id":null,"message":"SyntaxError: C:\\Users\\Aluno\\TCCdasala\\app expo\\App-Almox\\app\\cadastro.js: Unexpected token, expected \"}\" (138:12)\n\n  136 |\n  137 | const styles = StyleSheet.create({\n> 138 |   background: {\n      |             ^\n  139 |     flex: 1,\n  140 |     backgroundColor: '#F0F1F2',\n  141 |   },","importStack":null,"filename":"app\\cadastro.js","targetModuleName":null,"originModulePath":null}

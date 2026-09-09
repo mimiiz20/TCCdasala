@@ -2,6 +2,7 @@
   "expo": {
     "name": "App-Almox",
     "slug": "App-Almox",
+    "scheme": "senai-almoxarifado",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/fiep.png",
