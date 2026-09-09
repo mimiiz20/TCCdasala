@@ -15,6 +15,7 @@ export default function Tabela() {
   const [produtoAberto, setProdutoAberto] = useState(null);
   const [menuAberto, setMenuAberto] = useState(false);
   const [imagemAberta, setImagemAberta] = useState(false);
+  const [tipoUsuario, setTipoUsuario] = useState('admin');
 
   const produtos = [
     {
@@ -89,6 +90,8 @@ export default function Tabela() {
           <Text style={styles.link}>EDITAR</Text>
         </TouchableOpacity>
 
+        {tipoUsuario === 'admin' && (
+  <>
         <TouchableOpacity onPress={() => router.push('/contas')}>
           <Text style={styles.link}>CONTAS</Text>
         </TouchableOpacity>
@@ -96,6 +99,8 @@ export default function Tabela() {
         <TouchableOpacity onPress={() => router.push('/cadastro')}>
           <Text style={styles.link}>CADASTRO</Text>
         </TouchableOpacity>
+      </>
+)}
       </View>
 
       {/* SIDEBAR */}

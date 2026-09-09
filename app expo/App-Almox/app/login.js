@@ -8,6 +8,9 @@ import { router } from 'expo-router';
 
 export default function Login() {
 
+  const [email, setEmail] = useState('');
+  const [senha, setSenha] = useState('');
+
   const [emailFocus, setEmailFocus] = useState(false);
   const [senhaFocus, setSenhaFocus] = useState(false);
 
@@ -18,6 +21,38 @@ export default function Login() {
     Montserrat_700Bold,
     Poppins_700Bold,
   });
+
+  const fazerLogin = async () => {
+  try {
+    const resposta = await fetch('http://10.154.20.90:5000/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        email: email,
+        senha: senha,
+      }),
+    });
+
+    const dados = await resposta.json();
+
+    if (!resposta.ok) {
+      alert(dados.mensagem || 'Email ou senha incorretos');
+      return;
+    }
+
+    if (dados.tipo === 'admin') {
+      router.replace('/tabela');
+    } else if (dados.tipo === 'usuario') {
+      router.replace('/tabela');
+    }
+
+  } catch (erro) {
+    console.log(erro);
+    alert('Não foi possível conectar ao servidor');
+  }
+};
 
   if (!fontsLoaded) {
     return null;
@@ -70,6 +105,8 @@ export default function Login() {
             ]}
             placeholder="seunome@empresa.com"
             placeholderTextColor="#888"
+            value={email}
+            onChangeText={setEmail}
             onFocus={() => setEmailFocus(true)}
             onBlur={() => setEmailFocus(false)}
           />
@@ -85,13 +122,15 @@ export default function Login() {
             ]}
             placeholder="Digite sua senha"
             placeholderTextColor="#888"
+            value={senha}
+            onChangeText={setSenha}
             onFocus={() => setSenhaFocus(true)}
             onBlur={() => setSenhaFocus(false)}
           />
 
           <TouchableOpacity
             style={styles.button}
-            onPress={() => router.push('/tabela')}
+            onPress={fazerLogin}
           >
             <Text style={styles.buttonText}>
               ENTRAR

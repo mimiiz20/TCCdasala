@@ -550,3 +550,39 @@
 {"_e":"devserver:start","_t":1788956596615,"mode":"development","web":true,"baseUrl":"","asyncRoutes":false,"routerRoot":"../..\\..\\app","serverComponents":false,"serverActions":false,"serverRendering":false,"apiRoutes":false,"exporting":false}
 {"_e":"metro:config","_t":1788956597104,"serverRoot":"../..\\..","projectRoot":"../..\\..","exporting":false,"flags":{"autolinkingModuleResolution":false,"serverActions":false,"serverComponents":false,"reactCompiler":false,"optimizeGraph":false,"treeshaking":false,"logbox":false}}
 {"_e":"expo:dev-tools-plugin:load","_t":1788956597513,"plugins":[]}
+{"_e":"metro:instantiate","_t":1788956606009,"atlas":false,"workers":3,"host":"::","port":8081}
+{"_e":"metro:bundling:started","_t":1788956618812,"id":"3","platform":"android","environment":null,"entry":"index.js"}
+{"_e":"metro:bundling:progress","_t":1788956618812,"id":"3","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:progress","_t":1788956618818,"id":"3","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:progress","_t":1788956618925,"id":"3","progress":0.06909387755102041,"total":175,"current":46}
+{"_e":"metro:bundling:progress","_t":1788956619033,"id":"3","progress":0.1584503723253841,"total":309,"current":123}
+{"_e":"metro:bundling:progress","_t":1788956619132,"id":"3","progress":0.2666807119019004,"total":457,"current":236}
+{"_e":"metro:bundling:progress","_t":1788956619236,"id":"3","progress":0.3526029369506548,"total":581,"current":345}
+{"_e":"metro:bundling:progress","_t":1788956619336,"id":"3","progress":0.3526029369506548,"total":756,"current":416}
+{"_e":"metro:bundling:progress","_t":1788956619436,"id":"3","progress":0.43550583148706107,"total":841,"current":555}
+{"_e":"metro:bundling:progress","_t":1788956619536,"id":"3","progress":0.5782997934209835,"total":956,"current":727}
+{"_e":"metro:bundling:progress","_t":1788956619637,"id":"3","progress":0.6375917236780974,"total":1062,"current":848}
+{"_e":"metro:bundling:progress","_t":1788956619737,"id":"3","progress":0.6888855275389572,"total":1147,"current":952}
+{"_e":"metro:bundling:progress","_t":1788956619837,"id":"3","progress":0.7423978139204647,"total":1243,"current":1071}
+{"_e":"metro:bundling:progress","_t":1788956619937,"id":"3","progress":0.7966228558699042,"total":1340,"current":1196}
+{"_e":"metro:bundling:progress","_t":1788956620037,"id":"3","progress":0.8818488971107771,"total":1395,"current":1310}
+{"_e":"metro:bundling:progress","_t":1788956620145,"id":"3","progress":0.9986183075915712,"total":1447,"current":1446}
+{"_e":"metro:bundling:progress","_t":1788956620245,"id":"3","progress":0.999,"total":1447,"current":1447}
+{"_e":"metro:bundling:done","_t":1788956620317,"id":"3","total":1447,"ms":1504.5727}
+{"_e":"metro:client_log","_t":1788956628240,"level":"warn","data":["Route \"./editor.js\" is missing the required default export. Ensure a React component is exported as default."]}
+{"_e":"metro:client_log","_t":1788956635206,"level":"error","data":["[ReferenceError: Property 'menuAberto' doesn't exist]"]}
+{"_e":"metro:client_log","_t":1788956666823,"level":"warn","data":["Route \"./editor.js\" is missing the required default export. Ensure a React component is exported as default."]}
+{"_e":"metro:client_log","_t":1788956671106,"level":"error","data":["[ReferenceError: Property 'TextInput' doesn't exist]"]}
+{"_e":"metro:client_log","_t":1788956831678,"level":"warn","data":["Route \"./editor.js\" is missing the required default export. Ensure a React component is exported as default."]}
+{"_e":"metro:client_log","_t":1788956919945,"level":"error","data":["[ReferenceError: Property 'TextInput' doesn't exist]"]}
+{"_e":"metro:bundling:started","_t":1788956941827,"id":"d","platform":"android","environment":null,"entry":"index.js"}
+{"_e":"metro:bundling:progress","_t":1788956941827,"id":"d","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:done","_t":1788956941888,"id":"d","total":1,"ms":60.3734}
+{"_e":"metro:client_log","_t":1788956950372,"level":"warn","data":["Route \"./editor.js\" is missing the required default export. Ensure a React component is exported as default."]}
+{"_e":"metro:bundling:started","_t":1788956952878,"id":"f","platform":"android","environment":null,"entry":"index.js"}
+{"_e":"metro:bundling:progress","_t":1788956952878,"id":"f","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:done","_t":1788956952929,"id":"f","total":1,"ms":51.4115}
+{"_e":"metro:client_log","_t":1788956959899,"level":"warn","data":["Route \"./editor.js\" is missing the required default export. Ensure a React component is exported as default."]}
+{"_e":"metro:bundling:failed","_t":1788956963980,"id":null,"message":"SyntaxError: C:\\Users\\Aluno\\TCCdasala\\app expo\\App-Almox\\app\\cadastro.js: Identifier 'senhaFocus' has already been declared. (13:9)\n\n  11 | const [senhaFocus, setSenhaFocus] = useState(false);\n  12 |   const [emailFocus, setEmailFocus] = useState(false);\n> 13 |   const [senhaFocus, setSenhaFocus] = useState(false);\n     |          ^\n  14 |\n  15 |   const [fontsLoaded] = useFonts({\n  16 |     Inter_400Regular,","importStack":null,"filename":"app\\cadastro.js","targetModuleName":null,"originModulePath":null}
+{"_e":"metro:bundling:failed","_t":1788956967553,"id":null,"message":"SyntaxError: C:\\Users\\Aluno\\TCCdasala\\app expo\\App-Almox\\app\\cadastro.js: Identifier 'senhaFocus' has already been declared. (13:9)\n\n  11 |   const [senhaFocus, setSenhaFocus] = useState(false);\n  12 |   const [emailFocus, setEmailFocus] = useState(false);\n> 13 |   const [senhaFocus, setSenhaFocus] = useState(false);\n     |          ^\n  14 |\n  15 |   const [fontsLoaded] = useFonts({\n  16 |     Inter_400Regular,","importStack":null,"filename":"app\\cadastro.js","targetModuleName":null,"originModulePath":null}
+{"_e":"metro:bundling:failed","_t":1788956972463,"id":null,"message":"SyntaxError: C:\\Users\\Aluno\\TCCdasala\\app expo\\App-Almox\\app\\cadastro.js: Identifier 'setSenhaFocus' has already been declared. (13:21)\n\n  11 |   const [usuarioFocus, setSenhaFocus] = useState(false);\n  12 |   const [emailFocus, setEmailFocus] = useState(false);\n> 13 |   const [senhaFocus, setSenhaFocus] = useState(false);\n     |                      ^\n  14 |\n  15 |   const [fontsLoaded] = useFonts({\n  16 |     Inter_400Regular,","importStack":null,"filename":"app\\cadastro.js","targetModuleName":null,"originModulePath":null}
