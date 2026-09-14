@@ -1,6 +1,6 @@
 ##RODAR FLASK
-docker build --no-cache -t tccalmox .
-docker run --name almox -p 5000:5000 tccalmox
+docker build --no-cache -f banco\Dockerfile.flask -t tccalmox .
+docker run -d --name almox --network almoxarifado-rede -p 5000:5000 tccalmox
 
 
 ##RODAR MYSQL

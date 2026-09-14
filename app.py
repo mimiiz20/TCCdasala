@@ -24,7 +24,7 @@ def verificar_senha(senha_digitada, hash_armazenado):
 # CONEXÃO
 def get_db():
     return mysql.connector.connect(
-        host="127.0.0.1", # Mudei pra rodar no Docker, mas era 127.0.0.1
+        host="almoxarifado-mysql", # Mudei pra rodar no Docker, mas era 127.0.0.1
         user='root',
         password='',
         database='almoxarifado',
@@ -74,6 +74,60 @@ def login():
 @app.route('/login_erro.html')
 def login_erro():
     return render_template('login_erro.html')
+
+# LOGIN DO APLICATIVO
+@app.route('/login_app', methods=['POST'])
+def login_app():
+
+    dados = request.get_json()
+
+    if not dados:
+        return jsonify({
+            'mensagem': 'Nenhum dado recebido'
+        }), 400
+
+    email = dados.get('email')
+    senha = dados.get('senha')
+
+    if not email or not senha:
+        return jsonify({
+            'mensagem': 'Email e senha são obrigatórios'
+        }), 400
+
+    conexao = get_db()
+    cursor = conexao.cursor()
+
+    cursor.execute("""
+        SELECT id, user, email, tipo, senha
+        FROM usuarios
+        WHERE email = %s
+    """, (email,))
+
+    usuario = cursor.fetchone()
+
+    cursor.close()
+    conexao.close()
+
+    # Usuário não encontrado
+    if not usuario:
+        return jsonify({
+            'mensagem': 'Email ou senha incorretos'
+        }), 401
+
+    # Verifica a senha usando bcrypt
+    if not verificar_senha(senha, usuario[4]):
+        return jsonify({
+            'mensagem': 'Email ou senha incorretos'
+        }), 401
+
+    # Login correto
+    return jsonify({
+        'mensagem': 'Login realizado com sucesso',
+        'id': usuario[0],
+        'usuario': usuario[1],
+        'email': usuario[2],
+        'tipo': usuario[3]
+    }), 200
 
 # LOGOUT
 @app.route('/logout')
