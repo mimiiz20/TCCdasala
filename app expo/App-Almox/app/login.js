@@ -3,6 +3,7 @@ import { useFonts, Inter_400Regular, Inter_700Bold } from '@expo-google-fonts/in
 import { Montserrat_400Regular, Montserrat_700Bold } from '@expo-google-fonts/montserrat';
 import { Poppins_700Bold } from '@expo-google-fonts/poppins';
 import { LinearGradient } from 'expo-linear-gradient';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useState } from 'react';
 import { router } from 'expo-router';
 
@@ -24,7 +25,7 @@ export default function Login() {
 
   const fazerLogin = async () => {
   try {
-    const resposta = await fetch('http://10.154.20.90:5000/login', {
+    const resposta = await fetch('http://10.154.20.21:5000/login_app', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -35,18 +36,21 @@ export default function Login() {
       }),
     });
 
-    const dados = await resposta.json();
+    const texto = await resposta.text();
+
+    console.log('STATUS:', resposta.status);
+    console.log('RESPOSTA DO SERVIDOR:', texto);
 
     if (!resposta.ok) {
       alert(dados.mensagem || 'Email ou senha incorretos');
       return;
     }
 
-    if (dados.tipo === 'admin') {
-      router.replace('/tabela');
-    } else if (dados.tipo === 'usuario') {
-      router.replace('/tabela');
-    }
+    await AsyncStorage.setItem('tipoUsuario', dados.tipo);
+    await AsyncStorage.setItem('nomeUsuario', dados.usuario);
+    await AsyncStorage.setItem('emailUsuario', dados.email);
+
+    router.replace('/tabela');
 
   } catch (erro) {
     console.log(erro);

@@ -2,7 +2,8 @@ import { View, Text, StyleSheet, Image, TouchableOpacity, FlatList, Modal} from 
 import { useFonts, Poppins_700Bold } from '@expo-google-fonts/poppins';
 import { Montserrat_400Regular, Montserrat_700Bold } from '@expo-google-fonts/montserrat';
 import { MaterialIcons } from '@expo/vector-icons';
-import { useState } from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useEffect, useState } from 'react';
 import { router } from 'expo-router';
 
 export default function Tabela() {
@@ -15,7 +16,28 @@ export default function Tabela() {
   const [produtoAberto, setProdutoAberto] = useState(null);
   const [menuAberto, setMenuAberto] = useState(false);
   const [imagemAberta, setImagemAberta] = useState(false);
-  const [tipoUsuario, setTipoUsuario] = useState('admin');
+  const [tipoUsuario, setTipoUsuario] = useState(null);
+  const [nomeUsuario, setNomeUsuario] = useState('');
+
+  useEffect(() => {
+    const carregarUsuario = async () => {
+    const tipo = await AsyncStorage.getItem('tipoUsuario');
+    const nome = await AsyncStorage.getItem('nomeUsuario');
+
+    setTipoUsuario(tipo);
+    setNomeUsuario(nome);
+  };
+
+  carregarUsuario();
+}, []);
+
+const deslogar = async () => {
+  await AsyncStorage.removeItem('tipoUsuario');
+  await AsyncStorage.removeItem('nomeUsuario');
+  await AsyncStorage.removeItem('emailUsuario');
+
+  router.replace('/login');
+};
 
   const produtos = [
     {
@@ -117,13 +139,14 @@ export default function Tabela() {
             />
           </TouchableOpacity>
 
-          <Text style={styles.sidebarTitulo}>USUÁRIO</Text>
-          <Text style={styles.usuario}>Róger</Text>
-          <Text style={styles.tipo}>Usuário</Text>
+          <Text style={styles.usuario}>{nomeUsuario}</Text>
+          <Text style={styles.tipo}>
+            {tipoUsuario === 'admin' ? 'Administrador' : 'Usuário'}
+          </Text>
 
           <TouchableOpacity
             style={styles.logout}
-            onPress={() => router.replace('/login')}
+            onPress={deslogar}
           >
             <MaterialIcons
               name="logout"
