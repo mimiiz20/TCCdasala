@@ -406,6 +406,66 @@ def cadastro():
 
     return redirect('/acesso')
 
+## CADASTRO DO APP
+@app.route('/cadastro_app', methods=['POST'])
+def cadastro_app():
+
+    try:
+        usuario = dados.get('user')
+        dados = request.get_json()
+
+        usuarios = dados.get('user')
+        email = dados.get('email')
+        senha = dados.get('senha')
+        perfil = "usuario"
+
+        if not usuario or not email or not senha or not perfil:
+            return jsonify({
+                'mensagem: Preencha todos os campos'
+            }), 400
+        
+        senha_criptografada = gerar_hash(senha)
+
+        conexao = get_db()
+        cursor = conexao.cursor()
+
+        cursor.execute(
+            "SELECT id FROM usuarios WHERE email = %s",
+            (email,)
+        )
+
+        usuario_existente = cursor.fetchone()
+
+        if usuario_existente:
+            cursor.close()
+            conexao.close()
+
+            return jsonify({
+                'mensagem': 'Este email já está cadastrado'
+            }), 400
+
+        # Cadastra o usuário
+        cursor.execute("""
+            INSERT INTO usuarios (user, email, senha, tipo)
+            VALUES (%s, %s, %s, %s)
+        """, (usuario, email, senha_criptografada, perfil))
+
+        conexao.commit()
+
+        cursor.close()
+        conexao.close()
+
+        return jsonify({
+            'mensagem': 'Usuário cadastrado com sucesso'
+        }), 201
+
+    except Exception as erro:
+        print('ERRO NO CADASTRO:', erro)
+
+        return jsonify({
+            'mensagem': 'Erro ao cadastrar usuário'
+        }), 500
+
 # RODAR
 if __name__ == '__main__':
     app.run(debug=True, host="0.0.0.0", port=5000)

@@ -4,6 +4,12 @@ FROM python:latest
 # Define a pasta de trabalho dentro do container
 WORKDIR /app
 
+# Define UTF-8
+ENV LANG=C.UTF-8
+ENV LC_ALL=C.UTF-8
+ENV PYTHONIOENCODING=UTF-8
+ENV PYTHONUTF8=1
+
 RUN pip install Flask && pip install bcrypt && pip install mysql-connector-python
 # Copia o código da aplicação
 COPY . .
