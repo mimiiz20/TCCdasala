@@ -206,6 +206,7 @@ const styles = StyleSheet.create({
     width: '90%',
     maxWidth: 350,
     minHeight: 435,
+    marginTop: 50,
     paddingVertical: 20,
     paddingHorizontal: 10,
   },
