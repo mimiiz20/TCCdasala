@@ -3072,3 +3072,9 @@
 {"_e":"metro:client_log","_t":1789478453679,"level":"log","data":["STATUS:","404"]}
 {"_e":"metro:client_log","_t":1789478453745,"level":"log","data":["RESPOSTA DO SERVIDOR:","<!doctype html>\n<html lang=en>\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"]}
 {"_e":"metro:client_log","_t":1789478453745,"level":"log","data":["ERRO:","[ReferenceError: Property 'dados' doesn't exist]"]}
+{"_e":"root:init","_t":1789478876006,"format":"v0-jsonl","version":"57.0.24"}
+{"_e":"env:mode","_t":1789478876030,"nodeEnv":"development","babelEnv":"development","mode":"development"}
+{"_e":"env:load","_t":1789478876050,"mode":"development","files":[],"env":{}}
+{"_e":"devserver:start","_t":1789478881223,"mode":"development","web":true,"baseUrl":"","asyncRoutes":false,"routerRoot":"../..\\..\\app","serverComponents":false,"serverActions":false,"serverRendering":false,"apiRoutes":false,"exporting":false}
+{"_e":"metro:config","_t":1789478887865,"serverRoot":"../..\\..","projectRoot":"../..\\..","exporting":false,"flags":{"autolinkingModuleResolution":false,"serverActions":false,"serverComponents":false,"reactCompiler":false,"optimizeGraph":false,"treeshaking":false,"logbox":false}}
+{"_e":"expo:dev-tools-plugin:load","_t":1789478889362,"plugins":[]}
