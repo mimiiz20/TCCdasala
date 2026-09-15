@@ -406,7 +406,7 @@ def cadastro():
 
     return redirect('/acesso')
 
-## CADASTRO DO APP
+# CADASTRO DO APP
 @app.route('/cadastro_app', methods=['POST'])
 def cadastro_app():
 
