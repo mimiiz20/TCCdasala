@@ -36,10 +36,10 @@ export default function Login() {
       }),
     });
 
-    const texto = await resposta.text();
+    const dados = await resposta.json();
 
     console.log('STATUS:', resposta.status);
-    console.log('RESPOSTA DO SERVIDOR:', texto);
+    console.log('RESPOSTA DO SERVIDOR:', dados);
 
     if (!resposta.ok) {
       alert(dados.mensagem || 'Email ou senha incorretos');
