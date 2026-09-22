@@ -8,3 +8,8 @@ docker run -d --name almox --network almoxarifado-rede -p 5000:5000 tccalmox
 ##RODAR MYSQL
 docker build -f banco/Dockerfile.mysql -t almoxarifado-mysql .
 docker run -d --name almoxarifado-mysql --network almoxarifado-rede -p 3306:3306 almoxarifado-mysql
+
+## VERIFICAR O BANCO DE INSERÇÃO DE PRODUOS E USUÁRIOS
+docker exec -it almoxarifado-mysql mysql -u root
+USE almoxarifado
+SELECT id, user, email, tipo FROM usuarios;

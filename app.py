@@ -411,15 +411,14 @@ def cadastro():
 def cadastro_app():
 
     try:
-        usuario = dados.get('user')
         dados = request.get_json()
 
-        usuarios = dados.get('user')
+        usuario = dados.get('user')
         email = dados.get('email')
         senha = dados.get('senha')
         perfil = "usuario"
 
-        if not usuario or not email or not senha or not perfil:
+        if not usuario or not email or not senha:
             return jsonify({
                 'mensagem: Preencha todos os campos'
             }), 400
@@ -460,11 +459,13 @@ def cadastro_app():
         }), 201
 
     except Exception as erro:
-        print('ERRO NO CADASTRO:', erro)
+        print('ERRO NO CADASTRO:', repr(erro))
 
         return jsonify({
-            'mensagem': 'Erro ao cadastrar usuário'
+            'mensagem': 'Erro ao cadastrar usuário',
+            'erro': str(erro)
         }), 500
+
 
 # RODAR
 if __name__ == '__main__':
