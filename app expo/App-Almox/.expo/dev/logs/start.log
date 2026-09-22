@@ -3387,3 +3387,33 @@
 {"_e":"metro:bundling:progress","_t":1790077229674,"id":"12","progress":0,"total":1,"current":0}
 {"_e":"metro:bundling:done","_t":1790077229838,"id":"12","total":1,"ms":1298.3567}
 {"_e":"metro:client_log","_t":1790077237297,"level":"warn","data":["Route \"./usuarios.js\" is missing the required default export. Ensure a React component is exported as default."]}
+{"_e":"root:init","_t":1790078085670,"format":"v0-jsonl","version":"57.0.24"}
+{"_e":"env:mode","_t":1790078085692,"nodeEnv":"development","babelEnv":"development","mode":"development"}
+{"_e":"env:load","_t":1790078085715,"mode":"development","files":[],"env":{}}
+{"_e":"devserver:start","_t":1790078092069,"mode":"development","web":true,"baseUrl":"","asyncRoutes":false,"routerRoot":"../..\\..\\app","serverComponents":false,"serverActions":false,"serverRendering":false,"apiRoutes":false,"exporting":false}
+{"_e":"metro:config","_t":1790078099849,"serverRoot":"../..\\..","projectRoot":"../..\\..","exporting":false,"flags":{"autolinkingModuleResolution":false,"serverActions":false,"serverComponents":false,"reactCompiler":false,"optimizeGraph":false,"treeshaking":false,"logbox":false}}
+{"_e":"expo:dev-tools-plugin:load","_t":1790078103562,"plugins":[]}
+{"_e":"metro:instantiate","_t":1790078116348,"atlas":false,"workers":3,"host":"::","port":8081}
+{"_e":"metro:bundling:started","_t":1790078123543,"id":"1","platform":"android","environment":null,"entry":"node_modules\\expo-router\\entry.js"}
+{"_e":"metro:bundling:progress","_t":1790078123545,"id":"1","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:progress","_t":1790078123550,"id":"1","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:progress","_t":1790078123650,"id":"1","progress":0.01582215893358649,"total":159,"current":20}
+{"_e":"metro:bundling:progress","_t":1790078123750,"id":"1","progress":0.07475206553605745,"total":267,"current":73}
+{"_e":"metro:bundling:progress","_t":1790078123850,"id":"1","progress":0.19041322314049586,"total":385,"current":168}
+{"_e":"metro:bundling:progress","_t":1790078123952,"id":"1","progress":0.26753864447086806,"total":551,"current":285}
+{"_e":"metro:bundling:progress","_t":1790078124052,"id":"1","progress":0.338642008025159,"total":653,"current":380}
+{"_e":"metro:bundling:progress","_t":1790078124153,"id":"1","progress":0.338642008025159,"total":878,"current":472}
+{"_e":"metro:bundling:progress","_t":1790078124253,"id":"1","progress":0.34202652579073395,"total":1002,"current":586}
+{"_e":"metro:bundling:progress","_t":1790078124353,"id":"1","progress":0.5180246489740575,"total":1074,"current":773}
+{"_e":"metro:bundling:progress","_t":1790078124453,"id":"1","progress":0.6103515625,"total":1216,"current":950}
+{"_e":"metro:bundling:progress","_t":1790078124560,"id":"1","progress":0.6740449188601112,"total":1257,"current":1032}
+{"_e":"metro:bundling:progress","_t":1790078124659,"id":"1","progress":0.844899759038344,"total":1324,"current":1217}
+{"_e":"metro:bundling:progress","_t":1790078124759,"id":"1","progress":0.9055024930747922,"total":1425,"current":1356}
+{"_e":"metro:bundling:progress","_t":1790078124859,"id":"1","progress":0.9739255034065624,"total":1524,"current":1504}
+{"_e":"metro:bundling:progress","_t":1790078124959,"id":"1","progress":0.9889942751585336,"total":1631,"current":1622}
+{"_e":"metro:bundling:done","_t":1790078125171,"id":"1","total":1631,"ms":1627.4046}
+{"_e":"metro:client_log","_t":1790078136052,"level":"warn","data":["Route \"./usuarios.js\" is missing the required default export. Ensure a React component is exported as default."]}
+{"_e":"metro:client_log","_t":1790078152611,"level":"log","data":["STATUS:","200"]}
+{"_e":"metro:client_log","_t":1790078152726,"level":"log","data":["RESPOSTA DO SERVIDOR:","{\"email\": \"admin@empresa.com\", \"id\": 1, \"mensagem\": \"Login realizado com sucesso\", \"tipo\": \"admin\", \"usuario\": \"Administrador\"}"]}
+{"_e":"metro:client_log","_t":1790078173292,"level":"log","data":["STATUS:","201"]}
+{"_e":"metro:client_log","_t":1790078173413,"level":"log","data":["RESPOSTA DO SERVIDOR:","{\"mensagem\": \"Usuário cadastrado com sucesso\"}"]}
