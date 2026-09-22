@@ -8,10 +8,14 @@ import { useState } from 'react';
 import { router } from 'expo-router';
 
 export default function Cadastro() {
-    
     const [usuario, setUsuario] = useState('');
     const [email, setEmail] = useState('');
     const [senha, setSenha] = useState('');
+    
+    const [usuarioFocus, setUsuarioFocus] = useState(false);
+    const [emailFocus, setEmailFocus] = useState(false);
+    const [senhaFocus, setSenhaFocus] = useState(false);
+
 
     const cadastrarUsuario = async () => {
     try {
@@ -20,7 +24,7 @@ export default function Cadastro() {
     return;
     }
 
-    const resposta = await fetch('http://10.154.20.21:5000/cadastro_app', {
+    const resposta = await fetch('http://10.154.20.17:5000/cadastro_app', {
     method: 'POST',
     headers: {
     'Content-Type': 'application/json',
@@ -32,10 +36,10 @@ export default function Cadastro() {
     }),
     });
 
-    const texto = await resposta.text();
+    const dados = await resposta.json();
 
     console.log('STATUS:', resposta.status);
-    console.log('RESPOSTA DO SERVIDOR:', texto);
+    console.log('RESPOSTA DO SERVIDOR:', dados);
     
     if (!resposta.ok) {
     Alert.alert('Erro', dados.mensagem || 'Não foi possível cadastrar.');
@@ -136,28 +140,43 @@ export default function Cadastro() {
         {/* FORMULÁRIO DE CADASTRO DE USUÁRIOS */}
         <Card style={styles.card}>
 
-          <TextInput
-            placeholder="Digite o usuário:"
-            style={styles.input_user}
-            value={usuario}
-            onChangeText={setUsuario}
-            />
+<TextInput
+  placeholder="Digite o usuário:"
+  style={[
+    styles.input_user,
+    usuarioFocus && styles.inputFocus
+  ]}
+  value={usuario}
+  onChangeText={setUsuario}
+  onFocus={() => setUsuarioFocus(true)}
+  onBlur={() => setUsuarioFocus(false)}
+/>
 
           <TextInput
             placeholder="Digite o email:"
-            style={styles.input_email}
+            style={[
+              styles.input_email,
+              emailFocus && styles.inputFocus
+            ]}
             value={email}
             onChangeText={setEmail}
             keyboardType="email-address"
-            />
+            onFocus={() => setEmailFocus(true)}
+            onBlur={() => setEmailFocus(false)}
+          />
 
           <TextInput
             placeholder="Digite a senha:"
-            style={styles.input_senha}
+            style={[
+              styles.input_senha,
+              senhaFocus && styles.inputFocus
+            ]}
             value={senha}
             onChangeText={setSenha}
             secureTextEntry
-            />
+            onFocus={() => setSenhaFocus(true)}
+            onBlur={() => setSenhaFocus(false)}
+          />
 
                 <TouchableOpacity
                     style={styles.botao}
@@ -304,4 +323,50 @@ inputAtivo: {
         fontSize: 15,
         alignSelf: 'center',
     },
+    input_user: {
+  width: 240,
+  height: 40,
+  alignSelf: 'center',
+  backgroundColor: '#FFFFFF',
+  borderRadius: 5,
+  borderWidth: 1,
+  borderColor: '#D4D4D4',
+  marginBottom: 20,
+  paddingHorizontal: 10,
+},
+
+input_email: {
+  width: 240,
+  height: 40,
+  alignSelf: 'center',
+  backgroundColor: '#FFFFFF',
+  borderRadius: 5,
+  borderWidth: 1,
+  borderColor: '#D4D4D4',
+  marginBottom: 20,
+  paddingHorizontal: 10,
+},
+
+input_senha: {
+  width: 240,
+  height: 40,
+  alignSelf: 'center',
+  backgroundColor: '#FFFFFF',
+  borderRadius: 5,
+  borderWidth: 1,
+  borderColor: '#D4D4D4',
+  marginBottom: 20,
+  paddingHorizontal: 10,
+},
+
+inputFocus: {
+  borderColor: '#1D3273',
+  borderWidth: 2,
+},
+
+    inputFocus: {
+      borderColor: '#1D3273',
+      borderWidth: 2,
+    },
+
 });

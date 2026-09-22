@@ -25,7 +25,7 @@ export default function Login() {
 
   const fazerLogin = async () => {
   try {
-    const resposta = await fetch('http://10.154.20.21:5000/login_app', {
+    const resposta = await fetch('http://10.154.20.17:5000/login_app', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

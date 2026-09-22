@@ -11,7 +11,7 @@ import {
 } from "react-native";
 import { useLocalSearchParams, router } from "expo-router";
 
-const API_URL = "http://SEU_IP:5000";
+const API_URL = "http://10.154.20.17";
 
 export default function Editar() {
   const { id } = useLocalSearchParams();
