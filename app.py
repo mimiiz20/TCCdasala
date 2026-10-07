@@ -585,7 +585,7 @@ def tabela_app():
                 "qtde": item[4],
                 "estoque_min": item[5],
                 "preco": float(item[6]) if item[6] is not None else 0,
-                "descricao": item[6],
+                "descricao": item[7],
                 "imagem": item[8]
             })
 
